@@ -1,0 +1,86 @@
+function previewFile()
+                {
+                    var preview = document.querySelector('img');
+                    var file = document.querySelector('input[type=file]').files[0];
+                    var reader = new FileReader();
+                    reader.onloadend = function () 
+                    {
+                        preview.src = reader.result;
+                    }
+                    if (file) 
+                    {
+                        reader.readAsDataURL(file);
+                    } 
+                    else 
+                    {
+                        preview.src = "";
+                    }
+                    $("#igotakoirudia").show();
+
+                }
+
+                function ezabatuigotakoirudia() 
+                {
+                    $("#igotakoirudia").hide();
+                 }
+
+
+$(document).ready(function()
+                {
+                    $.betetadagoen = function()
+                    {   
+                        if (($("#eposta").val().length>0) &&($("#galdera").val().length>0 )&&($("#zuzen").val().length>0 )&&($("#oker1").val().length>0 )
+                            &&($("#oker2").val().length>0 )&($("#oker3").val().length>0 )&&($("#arlo").val().length>0)&& $('input[name=zailtasun]').is(":checked"))
+                        {
+                            return true;
+                        } 
+                        else 
+                        {
+                            return false;
+                        }
+                    }
+
+                    $.epostakonprobatu = function()
+                    {
+                        var balioa= $("#eposta").val();
+                        console.log(balioa.match((/^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/)+ " " + eposta));
+                        if (balioa.match((/^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/)) || balioa.match((/^[a-z].?[a-z]+@ehu\.(eus|es)$$/)))
+                        {
+                            return true;
+                        } 
+                        else 
+                        {
+                            return false;
+                        }
+                    }
+                    
+
+                    $('#galderenF').submit(function() 
+                     {
+                        if ($.betetadagoen()) 
+                        {
+                            if ($.epostakonprobatu()) 
+                            {
+                                if ($("#galdera").val().length>=10)
+                                {
+                                    alert("Formularioa ondo bete da");
+                                    return true;
+                                } 
+                                else 
+                                {
+                                    alert("Galderak gutxienez 10 karakterekoa izan behar dira");
+                                    return false;
+                                }         
+                            } 
+                            else
+                            {
+                                alert("Erabilitako e-posta elektronikoa okerra da");
+                                return false;
+                            }
+                        } else 
+                        {
+                            alert("Hutsuneak daude, bete itzazu!");
+                            return false;
+                        }
+                    })
+                })
