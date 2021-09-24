@@ -2,16 +2,16 @@
 <html>
 <head>
   <?php include '../html/Head.html'?> 
-  <!--<script src='../js/ValidateFieldsQuestionJS.js'></script>-->
   <script src='../js/jquery-3.4.1.min.js'></script>
   <script src='../js/ValidateFieldsQuestionJQ.js'></script>
+  <!-- <script src='../js/ValidateFieldsQuestionJS.js'></script>-->
 </head>
 
 <body>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id="galderenF" name="galderenF" action="AddQuestion.php" method="post">
+      <form id="galderenF" name="galderenF" action="AddQuestion.php">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
         <input type="text" id="eposta" name="eposta"><br>
         <label for="galdera"> Galdera testua (*): </label>
@@ -33,9 +33,7 @@
         <label for="handi">Handia</label></p>
         <label for="arlo"> Galderaren arloa(*): </label>
         <input type="text" id="arlo" name="arlo"><br>
-        Irudia(Hautazkoa): <input type="file" name="irudia" id="irudia" accept="image/*" onchange="previewFile();"/> <br>
-        <img id="igotakoirudia" src="" />
-        <input type="reset" value="Hustu" id="reset" onclick="ezabatuigotakoirudia();">
+        <input type="reset" value="Hustu" id="reset">
         <input type="submit" value="Igorri galdera" id="submit">
         
       </form>

@@ -1,26 +1,7 @@
-
-function previewFile(){
-    var preview = document.querySelector('img');
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-
-    reader.onloadend = function () {
-    preview.src = reader.result;
-    }
-
-    if (file) {
-        reader.readAsDataURL(file);
-    } else {
-        preview.src = "";
-    }
-}
-
-
-
 document.addEventListener("DOMContentLoaded",function(){
     document.getElementById("galderenF").addEventListener("submit",Konprobaketa);});
 
-function Konprobaketa(evento){
+function Konprobaketa(e){
     var eposta,galdera,zuzen,oker1,oker2,oker3,zailtasun,arlo,file;
     eposta=document.getElementById("eposta").value;
     galdera=document.getElementById("galdera").value;
@@ -39,14 +20,17 @@ function Konprobaketa(evento){
                 return true;
             }else{
                 alert("Galderak gutxienez 10 karakterekoa izan behar dira");
+                e.preventDefault();
                 return false;
             }
         }else{
             alert("Erabilitako e-posta elektronikoa ez da egokia");
+            e.preventDefault();
             return false;
         }
     }else{
         alert("Hutsuneak daude bete itzazu!");
+        e.preventDefault();
         return false;
     }
 }

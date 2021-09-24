@@ -7,7 +7,7 @@
 
 <nav class='main' id='n1' role='navigation'>
   <span><a href='Layout.php'>Hasiera</a></span>
-  <span><a href='QuestionForm.php'> Galdera sortu </a></span>
+  <span><a href='QuestionFormWithImage.php'> Galdera sortu </a></span>
   <span><a href='AddQuestion.php'>Galderak</a></span>
   <span><a href='Credits.php'>Kredituak</a></span>
 </nav>
