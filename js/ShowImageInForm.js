@@ -20,3 +20,5 @@ function ezabatuigotakoirudia(){
     var img=document.getElementById('igotakoirudia');
     img.style.display="none";
 }
+
+

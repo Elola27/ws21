@@ -36,7 +36,7 @@
         <label for="handi">Handia</label></p>
         <label for="arlo"> Galderaren arloa(*): </label>
         <input type="text" id="arlo" name="arlo"><br>
-        Irudia(Hautazkoa): <input type="file" name="irudia" id="irudia" accept="image/*" onchange="previewFile();"/> <br>
+        Irudia(Hautazkoa): <input type="file" name="irudia" id="irudia" accept="image/*" onchange="previewFile(event);"/><br>
         <img id="igotakoirudia" src="" /></br>
         <input type="reset" value="Hustu" id="reset" onclick="ezabatuigotakoirudia();">
         <input type="submit" value="Igorri galdera" id="submit">
