@@ -13,7 +13,7 @@
 	  
 
       <?php 
-      $niremysqli= new mysqli("localhost","root","","dbt51_quiz");
+      $niremysqli= new mysqli($zerbitzaria,$erabiltzailea,$gakoa,$db);
       if (!$niremysqli->query("SELECT * FROM dbt51_questions" )){
         echo "Errorea datuak sartzerako orduan:(".$niresqli->errno.")" .$niresqli->error;
       }
