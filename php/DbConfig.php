@@ -10,7 +10,7 @@ if ($lokal){
 else{
     $zerbitzaria="localhost";
     $erabiltzailea="T51";
-    $gakoa="sRuYH1dCR4HVd";
+    $gakoa="";
     $db="db_T51";
 }
 ?>
