@@ -2,6 +2,7 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
+  <?php include 'DbConfig.php'?>
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
@@ -31,7 +32,7 @@
 
       echo'</table>';
       $giz->close();
-      $niremysqli->close();
+      $niresqli->close();
       ?>
     </div>
   </section>
