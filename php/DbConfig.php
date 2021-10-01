@@ -2,9 +2,9 @@
 $lokal=0; //0 hodeirako
 
 if ($lokal){
-	$zerbitzaria="localhost";
+    $zerbitzaria="localhost";
     $erabiltzailea="root";
-	$gakoa="";
+    $gakoa="";
     $db="dbt51_quiz";
 }
 else{
