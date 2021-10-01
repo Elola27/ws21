@@ -16,7 +16,6 @@ $(document).ready(function()
                     $.epostakonprobatu = function()
                     {
                         var balioa= $("#eposta").val();
-                        console.log(balioa.match((/^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/)+ " " + eposta));
                         if (balioa.match((/^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/)) || balioa.match((/^[a-z].?[a-z]+@ehu\.(eus|es)$$/)))
                         {
                             return true;

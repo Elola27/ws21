@@ -2,9 +2,9 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
-  <script src='../js/jquery-3.4.1.min.js'></script>
+<script src='../js/jquery-3.4.1.min.js'></script>
   <script src='../js/ValidateFieldsQuestionJQ.js'></script>
-  <!-- <script src='../js/ValidateFieldsQuestionJS.js'></script>-->
+    <!-- <script src='../js/ValidateFieldsQuestionJS.js'></script>-->
   <script src='../js/ShowImageInForm.js'></script>
 </head>
 
@@ -14,7 +14,7 @@
     <div>      
     <h5>Irudia duen galdera baten datuak erabiltzaileak sar ditzan <br/>
 	  Irudia eta galdera erlazionatuta egon behar dute<br/></h5>
-    <form id="galderenF" name="galderenF" action="AddQuestion.php">
+    <form id="galderenF" name="galderenF" action="AddQuestion.php" method="post">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
         <input type="text" id="eposta" name="eposta"><br>
         <label for="galdera"> Galdera testua (*): </label>
