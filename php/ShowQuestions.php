@@ -17,10 +17,11 @@
       if ($niresqli->connect_errno){
         die("Huts egin du konexioak MySQL-ra: (".$niresqli->connect_errno . ")". $niresqli->connect_error);
       }
-      if (!$niremysqli->query('SELECT * FROM dbt51_questions')){
-        echo "Errorea datuak sartzerako orduan:(".$niresqli->errno.")" .$niresqli->error;
-      }
       $giz=$niremysqli->query("SELECT * FROM dbt51_questions");
+      /*if (!$niremysqli->query('SELECT * FROM dbt51_questions')){
+        echo "Errorea datuak sartzerako orduan:(".$niresqli->errno.")" .$niresqli->error;
+      }*/
+      
 
       echo '<table border=1> <tr> <th>GALDERAID<th>EPOSTA</th> <th>GALDERA</th> <th>ERANTZUN ZUZENA</th> <th>ERANTZUN OKERRA 1</th> <th>ERANTZUN OKERRA 2</th> <th>ERANTZUN OKERRA 3</th> <th>ZAILTASUNA</th> <th>ARLOA</th>';
       $giz->data_seek(0);
