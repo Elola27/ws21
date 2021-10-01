@@ -12,8 +12,8 @@ function Konprobaketa(e){
     arlo=document.getElementById("arlo").value;
     zailtasun=document.querySelector('input[name="zailtasun"]:checked');
     if (!(eposta === "" || galdera === "" || zuzen=== "" || oker1 === "" || oker2 === "" || oker3 === "" || arlo=== "" || zailtasun === null )){
-        const rikasle= new RegExp("^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$");
-        const rirakasle= new RegExp("^[a-z].?[a-z]+@ehu\.(eus|es)$");  
+        const rikasle= new RegExp("^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$");
+        const rirakasle= new RegExp("^[a-zA-Z].?[a-zA-Z]+@ehu\.(eus|es)$");  
         if ((rikasle.test(eposta)) || (rirakasle.test(eposta))){   
             if (galdera.length>10){
                 alert("Formularioa ondo beteta dago");
