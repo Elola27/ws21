@@ -14,6 +14,9 @@
 
       <?php 
       $niremysqli= new mysqli($zerbitzaria,$erabiltzailea,$gakoa,$db);
+      if ($niresqli->connect_errno){
+        die("Huts egin du konexioak MySQL-ra: (".$niresqli->connect_errno . ")". $niresqli->connect_error);
+      }
       if (!$niremysqli->query("SELECT * FROM dbt51_questions" )){
         echo "Errorea datuak sartzerako orduan:(".$niresqli->errno.")" .$niresqli->error;
       }
