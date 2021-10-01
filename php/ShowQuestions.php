@@ -14,7 +14,7 @@
 
       <?php 
       $niremysqli= new mysqli("localhost","root","","dbt51_quiz");
-      if (!$niremysqli->query("select * from dbt51_questions" )){
+      if (!$niremysqli->query("SELECT * FROM dbt51_questions" )){
         echo "Errorea datuak sartzerako orduan:(".$niresqli->errno.")" .$niresqli->error;
       }
       $giz=$niremysqli->query("select * from dbt51_questions" );
