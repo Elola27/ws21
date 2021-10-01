@@ -15,7 +15,6 @@
         die ("Errorea datuak sartzerako orduan");
       }*/
         $niresqli=new mysqli($zerbitzaria,$erabiltzailea,$gakoa,$db);
-
         if ($niresqli->connect_errno){
           die("Huts egin du konexioak MySQL-ra: (".$niresqli->connect_errno . ")". $niresqli->connect_error);
         }
