@@ -31,6 +31,7 @@ $(document).ready(function()
                      {
                         if ($.betetadagoen()) 
                         {
+                            return true;
                             if ($.epostakonprobatu()) 
                             {
                                 if ($("#galdera").val().length>=10)

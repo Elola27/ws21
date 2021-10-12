@@ -4,6 +4,7 @@
   <?php include '../html/Head.html'?> 
 </head>
 <body>
+ 
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
@@ -13,7 +14,19 @@
         <label for="pasahitz"> Pasahitza (*): </label>
         <input type="password" id="pasahitz" name="pasahitz"><br>
         <input type="reset" value="Hustu" id="reset">
-        <input type="submit" value="Igorri galdera" id="submit">
+        <input type="submit" value="Igorri galdera" id="submit"> 
+        <script>
+        $(document).ready(function(){
+          $('#register').submit(function(){
+            if (($("#eposta").val().length>0) && ($("#pasahitz").val().length>0)){
+              return true;
+            }else{
+              alert("Datuak bete");
+              return false;
+            } 
+          })
+        })
+      </script>
       </form>
     </div>
   </section>
@@ -22,20 +35,30 @@
 </html>
 
 <?php
-if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
-    $pasahitz=$_POST['pasahitz'];
-    $pasahitzerrepikatu=$_POST['pasahitzerrepikapen'];
-    $preg="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
-    if(preg_match($preg,$pasahitz)){
-        if (strcmp($pasahitz,$pasahitzerrepikatu)==0){
 
-        }else{
-            echo ("<script> alert('Emandako bi pasahitzak ez dira berdinak') </script>");
-        }
+if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
+  $eposta=$_POST['eposta'];
+  $pasahitz=$_POST['pasahitz'];
+  include 'DbConfig.php';
+  $esteka = mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db);
+  if ($esteka->connect_error) {
+    die("Errorea konektatzerakoan: " . $esteka->connect_error);
+  }
+  $sql_Quiz = "SELECT * FROM dbt51_user WHERE Eposta='$eposta' AND Pasahitza='$pasahitz'";
+
+  $ema = $esteka-> query($sql_Quiz);
+
+  if (!($ema)){
+    echo "Errorea kontsultan<br >". $ema->error;
+  }else{
+    $rows_cnt = $ema->num_rows;
+    mysqli_close($esteka);
+    if ($rows_cnt==1){$rows_cnt=0;
+        echo "<script> alert('Ongi etorri webgunera') </script>";
+        header('location:Layout.php?eposta='.$eposta);                  
     }else{
-    echo ("<script> alert('Pasahitzak 8ko luzera izan behar du, eta gutxienez letra xehe bat, larri bat eta zenbaki bat eraman behar ditu') </script>");
+        echo "<script> alert('Pasahitza ez da zuzena. Saiatu berriro') </script>";
     }
-}else{
-    echo ("<script> echo Datuak ez dira egokiak' </script>");
+  }
 }
 ?>

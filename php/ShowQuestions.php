@@ -5,7 +5,7 @@
   <?php include 'DbConfig.php'?>
 </head>
 <body>
-  <?php include '../php/Menus.php' ?>
+  <?php include 'Menus.php' ?>
   <section class="main" id="s1">
     <div>
 	

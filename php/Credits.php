@@ -5,7 +5,7 @@
   
 </head>
 <body>
-  <?php include '../php/Menus.php' ?>
+<?php include 'Menus.php'?>
   <section class="main" id="s1">
     <div>
 		<h2> EGILEAREN/EN DATUAK</h2>
