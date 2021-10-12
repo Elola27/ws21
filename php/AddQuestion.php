@@ -63,10 +63,11 @@ if (isset($_POST)){
       }else{
         echo ("Galdera berria gorde da!\n");
         $ePosta=$_GET['eposta'];
+        echo("$ePosta");
         echo nl2br ("\n\n");
-        echo nl2br ("<a href = showQuestions.php?eposta='".$ePosta. ">Ikusi dauden galdera guztiak irudi gabe.</a>\n");
-        echo nl2br ("<a href = showQuestionsWithImage.php?eposta='".$ePosta.">Ikusi dauden galdera guztiak irudiekin.</a>\n");
-        echo nl2br ("<a href = 'QuestionFormWithImage.php?eposta='".$ePosta.">Beste galdera bat egiteko.</a>\n");
+        echo nl2br ("<a href = showQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
+        echo nl2br ("<a href = showQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
+        echo nl2br ("<a href = 'QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
       }
       mysqli_close($niresqli);
   }else{
