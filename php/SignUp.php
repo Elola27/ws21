@@ -98,7 +98,7 @@ if (isset($_POST['eposta'])){
       echo"<script> alert('Konexioa ez da ireki') </script>";
       //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
     }
-    if(!$niresqli->query("INSERT INTO dbt51_User(Eposta,Deiturak,Pasahitza,Mota) VALUES ('$_POST[eposta]','$_POST[deitura]','$_POST[pasahitz]','$_POST[mota]')")){
+    if(!$niresqli->query("INSERT INTO dbt51_user(Eposta,Deiturak,Pasahitza,Mota) VALUES ('$_POST[eposta]','$_POST[deitura]','$_POST[pasahitz]','$_POST[mota]')")){
       echo"<script> alert('BOBO')</script>";  
       //echo "<script> alert('Dagoeneko posta horretarako erabiltzailea sortuta dago') </script>";
     }else{

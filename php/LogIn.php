@@ -50,6 +50,7 @@ if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
 
   if (!($ema)){
     echo "Errorea kontsultan<br >". $ema->error;
+    echo "<script> alert('BOBO') </script>";
   }else{
     $rows_cnt = $ema->num_rows;
     mysqli_close($esteka);
