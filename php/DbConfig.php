@@ -2,15 +2,15 @@
 $lokal=1; //0 hodeirako
 
 if ($lokal){
-	$zerbitzaria="localhost";
+    $zerbitzaria="localhost";
     $erabiltzailea="root";
-	$gakoa="";
+    $gakoa="";
     $db="dbt51_quiz";
 }
 else{
     $zerbitzaria="localhost";
     $erabiltzailea="T51";
-    $gakoa="sRuYH1dCR4HVd";
+    $gakoa="";
     $db="db_T51";
 }
 ?>
