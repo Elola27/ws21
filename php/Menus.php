@@ -28,6 +28,7 @@ if ($eposta==null){
   echo"<span><a href=Layout.php?eposta=$eposta>Hasiera</a></span>";
   echo"<span><a href=QuestionFormWithImage.php?eposta=$eposta> Galdera sortu </a></span>";
   echo"<span><a href=ShowQuestions.php?eposta=$eposta>Galderak ikusi</a></span>";
+  echo"<span><a href=ShowQuestionsWithImage.php?eposta=$eposta>Galderak irudiekin ikusteko</a></span>";
   echo"<span><a href=Credits.php?eposta=$eposta>Kredituak</a></span>";
 }
 ?>   
