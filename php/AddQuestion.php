@@ -41,17 +41,16 @@ if (isset($_POST)){
   $patroia="/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/";
   preg_match($patroia, $trimePosta, $matchesePosta);
   preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
-  preg_match('/^.\S+$/', $trimeZuzena, $matcheseZuzena);
-  preg_match('/^.\S+$/', $trimeOkerra1, $matcheseOkerra1);
-  preg_match('/^.\S+$/', $trimeOkerra2, $matcheseOkerra2);
-  preg_match('/^.\S+$/', $trimeOkerra3, $matcheseOkerra3);
-  preg_match('/[1-3]+$/', $trimgZail, $matchesgZail);
-  preg_match('/^.\S+$/', $trimgArloa, $matchesgArloa);   
+  preg_match('/^.+$/', $trimeZuzena, $matcheseZuzena);
+  preg_match('/^.+$/', $trimeOkerra1, $matcheseOkerra1);
+  preg_match('/^.+$/', $trimeOkerra2, $matcheseOkerra2);
+  preg_match('/^.+$/', $trimeOkerra3, $matcheseOkerra3);
+  preg_match('/[1-3]$/', $trimgZail, $matchesgZail);
+  preg_match('/^.+$/', $trimgArloa, $matchesgArloa);   
   
   
 
-  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){
-    echo"TONTOA";  
+  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){  
     include 'DbConfig.php';
       $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
       if ($niresqli->connect_errno){
@@ -65,9 +64,9 @@ if (isset($_POST)){
         echo ("Galdera berria gorde da!\n");
         $ePosta=$_GET['eposta'];
         echo nl2br ("\n\n");
-        echo nl2br ("<a href = showQuestions.php?eposta=$ePosta >Ikusi dauden galdera guztiak irudi gabe.</a>\n");
-        echo nl2br ("<a href = showQuestionsWithImage.php?eposta=$ePosta >Ikusi dauden galdera guztiak irudiekin.</a>\n");
-        echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta >Beste galdera bat egiteko.</a>\n");
+        echo nl2br ("<a href = showQuestions.php?eposta='".$ePosta. ">Ikusi dauden galdera guztiak irudi gabe.</a>\n");
+        echo nl2br ("<a href = showQuestionsWithImage.php?eposta='".$ePosta.">Ikusi dauden galdera guztiak irudiekin.</a>\n");
+        echo nl2br ("<a href = 'QuestionFormWithImage.php?eposta='".$ePosta.">Beste galdera bat egiteko.</a>\n");
       }
       mysqli_close($niresqli);
   }else{
@@ -76,9 +75,6 @@ if (isset($_POST)){
                  
 }
 ?>
-      <!--<a href=<?php echo "ShowQuestions.php?eposta=$_GET[eposta]"?>> Gordeta dauden galderak konsultatzeko sakatu hemen (Irudirik gabe) </a></span><br>
-      <a href=<?php echo "ShowQuestionsWithImage.php?eposta=$_GET[eposta]"?>> Gordeta dauden galderak konsultatzeko sakatu hemen (Irudiak ikusgarri) </a></span><br>
-      <a href=<?php echo "QuestionFormWithImage.php?eposta=$_GET[eposta]"?>>Galdera berri bat sortzeko sakatu hemen </a></span>-->
     </div>
   </section>
   <?php include '../html/Footer.html' ?>
