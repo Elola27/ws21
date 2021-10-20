@@ -52,7 +52,7 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){  
     include 'DbConfig.php';
-      $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
+      /*$niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
       if ($niresqli->connect_errno){
         echo"<script> alert('Konexioa ez da ireki') </script>";
         //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
@@ -64,12 +64,35 @@ if (isset($_POST)){
         echo ("Galdera berria gorde da!\n");
         $ePosta=$_GET['eposta'];
         echo nl2br ("\n\n");
-        echo nl2br ("<a href = showQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
-        echo nl2br ("<a href = showQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
-        echo nl2br ("<a href = 'QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
+        echo nl2br ("<a href = ShowQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
+        echo nl2br ("<a href = ShowQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
+        echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
         echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
       }
-      mysqli_close($niresqli);
+      mysqli_close($niresqli);*/
+
+      //xml
+
+      try{
+      $xml=sismplexml_load_file("../xml/Questions.xml");
+      $galdera=$xml->addChild('assessmentItem');
+      $galdera->addAttribute('author',$trimePosta);
+      $galdera->addAttribute('subject',$trimgArloa);
+      $galderatestu=$galdera->addChild('itemBody');
+      $galderatestu->addChild('p',$trimgTestua);
+      $erantzunzuzen=$galdera-addChild('correctResponse');
+      $erantzunzuzen->addChild('response',$trimeZuzena);
+      $erantzunoker=$galdera->addChild('incorrectResponses');
+      $erantzunoker->addChild('response',$trimeOkerra1);
+      $erantzunoker->addChild('response',$trimeOkerra2);
+      $erantzunoker->addChild('response',$trimeOkerra3);  
+      echo $xml->asXML();
+      $xml->asXML('Questions.xml');
+      echo "Ongi egina";
+      }except{
+        echo"Errorea";
+      }
+      //json
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
   }
