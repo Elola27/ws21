@@ -73,7 +73,7 @@ if (isset($_POST)){
 
       //xml
 
-      try{
+      /*try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
         $galdera->addAttribute('author',$trimePosta);
@@ -91,9 +91,9 @@ if (isset($_POST)){
         echo "Ongi egina";
         }catch(Exception $e){
           echo"Errorea";
-        }
+        }*/
   
-        /*//json
+        //json
         try{
         $data=file_get_contents("../json/Questions.json");
         $array=json_decode($data);
@@ -113,7 +113,7 @@ if (isset($_POST)){
         echo '<br>Judoka bat JSON fitxategian gehitu da<br>';
         }catch(Exception $e){
           echo"Error";
-        }*/
+        }
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
   }
