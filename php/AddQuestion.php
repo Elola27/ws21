@@ -102,7 +102,7 @@ if (isset($_POST)){
         $galdera->"author"=$trimePosta;
         $galdera->"itemBody"= array ("p" => $trimgTestua);
         $galdera->"correctResponse"= array("response"=> $trimeZuzena);
-        $galdera->"incorrectResponses" = array("response" => array("$trimeOkerra1","$trimeOkerra2","$trimeOkerra3"));
+        $galdera->"incorrectResponses"->"response" => array($trimeOkerra1,$trimeOkerra2,$trimeOkerra3);
         $arra[0]=$galdera;
         array_push($array->assessmentItems,$arra[0]);
         $jsonData = json_encode($array);
