@@ -80,7 +80,7 @@ if (isset($_POST)){
         $galdera->addAttribute('subject',$trimgArloa);
         $galderatestu=$galdera->addChild('itemBody');
         $galderatestu->addChild('p',$trimgTestua);
-        $erantzunzuzen=$galdera-addChild('correctResponse');
+        $erantzunzuzen=$galdera->addChild('correctResponse');
         $erantzunzuzen->addChild('response',$trimeZuzena);
         $erantzunoker=$galdera->addChild('incorrectResponses');
         $erantzunoker->addChild('response',$trimeOkerra1);
