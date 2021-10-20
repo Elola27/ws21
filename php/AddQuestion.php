@@ -74,25 +74,46 @@ if (isset($_POST)){
       //xml
 
       try{
-      $xml=sismplexml_load_file("../xml/Questions.xml");
-      $galdera=$xml->addChild('assessmentItem');
-      $galdera->addAttribute('author',$trimePosta);
-      $galdera->addAttribute('subject',$trimgArloa);
-      $galderatestu=$galdera->addChild('itemBody');
-      $galderatestu->addChild('p',$trimgTestua);
-      $erantzunzuzen=$galdera-addChild('correctResponse');
-      $erantzunzuzen->addChild('response',$trimeZuzena);
-      $erantzunoker=$galdera->addChild('incorrectResponses');
-      $erantzunoker->addChild('response',$trimeOkerra1);
-      $erantzunoker->addChild('response',$trimeOkerra2);
-      $erantzunoker->addChild('response',$trimeOkerra3);  
-      echo $xml->asXML();
-      $xml->asXML('Questions.xml');
-      echo "Ongi egina";
-      }except{
-        echo"Errorea";
-      }
-      //json
+        $xml=sismplexml_load_file("../xml/Questions.xml");
+        $galdera=$xml->addChild('assessmentItem');
+        $galdera->addAttribute('author',$trimePosta);
+        $galdera->addAttribute('subject',$trimgArloa);
+        $galderatestu=$galdera->addChild('itemBody');
+        $galderatestu->addChild('p',$trimgTestua);
+        $erantzunzuzen=$galdera-addChild('correctResponse');
+        $erantzunzuzen->addChild('response',$trimeZuzena);
+        $erantzunoker=$galdera->addChild('incorrectResponses');
+        $erantzunoker->addChild('response',$trimeOkerra1);
+        $erantzunoker->addChild('response',$trimeOkerra2);
+        $erantzunoker->addChild('response',$trimeOkerra3);  
+        echo $xml->asXML();
+        $xml->asXML('Questions.xml');
+        echo "Ongi egina";
+        }catch(Exception $e){
+          echo"Errorea";
+        }
+  
+        //json
+        try{
+        $data=file_get_contents("../json/Questions.json");
+        $array=json_decode($data);
+        $galdera=new stdClass();
+        $galdera->"subject"=$trimgArloa;
+        $galdera->"author"=$trimePosta;
+        $galdera->"itembody"= array ("p" => $trimgTestua);
+        $galdera->"correctResponse"= array("response"=> $trimeZuzena);
+        $galdera->"incorrectResponses"->"response" = array($trimeOkerra1,$trimeOkerra2,$trimeOkerra3);
+        $arra[0]=$galdera;
+        array_push($array->assessmentItems,$arra[0]);
+        $jsonData = json_encode($array);
+        $jsonData = str_replace('{', '{'.PHP_EOL, $jsonData);
+        $jsonData = str_replace(',', ','.PHP_EOL, $jsonData);
+        $jsonData = str_replace('}', PHP_EOL.'}', $jsonData);
+        file_put_contents("../json/Questions.json",$jsonData);
+        echo '<br>Judoka bat JSON fitxategian gehitu da<br>';
+        }catch(Exception $e){
+          echo"Error";
+        }
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
   }
