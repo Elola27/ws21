@@ -93,7 +93,7 @@ if (isset($_POST)){
           echo"Errorea";
         }
   
-        //json
+        /*//json
         try{
         $data=file_get_contents("../json/Questions.json");
         $array=json_decode($data);
@@ -113,7 +113,7 @@ if (isset($_POST)){
         echo '<br>Judoka bat JSON fitxategian gehitu da<br>';
         }catch(Exception $e){
           echo"Error";
-        }
+        }*/
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
   }
