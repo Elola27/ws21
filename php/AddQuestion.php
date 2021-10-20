@@ -74,7 +74,7 @@ if (isset($_POST)){
       //xml
 
       try{
-        $xml=sismplexml_load_file("../xml/Questions.xml");
+        $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
         $galdera->addAttribute('author',$trimePosta);
         $galdera->addAttribute('subject',$trimgArloa);
