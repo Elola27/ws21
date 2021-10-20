@@ -87,7 +87,7 @@ if (isset($_POST)){
         $erantzunoker->addChild('response',$trimeOkerra2);
         $erantzunoker->addChild('response',$trimeOkerra3);  
         echo $xml->asXML();
-        $xml->asXML('Questions.xml');
+        $xml->asXML('../xml/Questions.xml');
         echo "Ongi egina";
         }catch(Exception $e){
           echo"Errorea";
