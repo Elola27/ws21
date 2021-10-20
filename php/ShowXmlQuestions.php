@@ -16,7 +16,7 @@
       <?php 
       $xml=simplexml_load_file('Questions.xml');
       echo '<table border=1> <tr> <th>GALDERA<th>EPOSTA</th><th>ERANTZUN ZUZENA</th>';
-      foreach($xml->assessmentItems as $galdera){
+      foreach($xml->assessmentItems->assessmentItem as $galdera){
         echo '<tr><td>'.$galdera->itemBody->p.'</td> <td>'.$galdera['author'].'</td> <td>'.$galdera->correctResponse->response.'</td></tr>';
       }
       echo'</table>';
