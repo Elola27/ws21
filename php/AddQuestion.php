@@ -54,7 +54,7 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
     //xml
-    if (preg_match('/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/',$trimePosta)==0){
+    if (preg_match('/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)||[a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/',$trimePosta)==0){
       if (strlen($trimgTestua)>9){
       try{
         $xml=simplexml_load_file("../xml/Questions.xml");
