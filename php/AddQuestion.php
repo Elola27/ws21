@@ -50,29 +50,8 @@ if (isset($_POST)){
   
   
 
-  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){  
-    include 'DbConfig.php';
-      $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
-      if ($niresqli->connect_errno){
-        echo"<script> alert('Konexioa ez da ireki') </script>";
-        //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
-      }
-      if(!$niresqli->query("INSERT INTO dbt51_questions (Eposta,Galdera,erZuzena,erOkerra1,erOkerra2,erOkerra3,Zailtasuna,Arloa) VALUES ('$trimePosta','$trimgTestua','$trimeZuzena','$trimeOkerra1','$trimeOkerra2','$trimeOkerra3','$trimgZail','$trimgArloa')")){
-        echo ("Sartu diren datuak okerrak dira");
-        echo "Error:" . $niresqli->error;
-      }else{
-        echo ("Galdera berria gorde da!\n");
-        $ePosta=$_GET['eposta'];
-        echo nl2br ("\n\n");
-        echo nl2br ("<a href = ShowQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
-        echo nl2br ("<a href = ShowQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
-        echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
-        echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
-      }
-      mysqli_close($niresqli);
-
-      //xml
-
+  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){       
+    //xml
       try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
@@ -88,7 +67,7 @@ if (isset($_POST)){
         $erantzunoker->addChild('response',$trimeOkerra3);  
         echo $xml->asXML();
         $xml->asXML('../xml/Questions.xml');
-        echo "Erregistro berri bat XML fitxategian gehitu da";
+        echo nl2br("Erregistro berri bat XML fitxategian gehitu da");
         }catch(Exception $e){
           echo"Errorea";
         }
@@ -110,10 +89,31 @@ if (isset($_POST)){
         $jsonData = str_replace(',', ','.PHP_EOL, $jsonData);
         $jsonData = str_replace('}', PHP_EOL.'}', $jsonData);
         file_put_contents("../json/Questions.json",$jsonData);
-        echo '<br>Erregistrio berri bat JSON fitxategian gehitu da<br>';
+        echo nl2br('<br>Erregistrio berri bat JSON fitxategian gehitu da<br>');
         }catch(Exception $e){
           echo"<script> alert('Error')</script>";
-        }
+        } 
+    include 'DbConfig.php';
+      $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
+      if ($niresqli->connect_errno){
+        echo"<script> alert('Konexioa ez da ireki') </script>";
+        //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
+      }
+      if(!$niresqli->query("INSERT INTO dbt51_questions (Eposta,Galdera,erZuzena,erOkerra1,erOkerra2,erOkerra3,Zailtasuna,Arloa) VALUES ('$trimePosta','$trimgTestua','$trimeZuzena','$trimeOkerra1','$trimeOkerra2','$trimeOkerra3','$trimgZail','$trimgArloa')")){
+        echo ("Sartu diren datuak okerrak dira");
+        echo "Error:" . $niresqli->error;
+      }else{
+        echo ("Galdera berria gorde da!\n");
+        $ePosta=$_GET['eposta'];
+        echo nl2br ("\n\n");
+        echo nl2br ("<a href = ShowQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
+        echo nl2br ("<a href = ShowQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
+        echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
+        echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
+      }
+      mysqli_close($niresqli);
+
+
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
   }
