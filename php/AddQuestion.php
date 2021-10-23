@@ -53,7 +53,7 @@ if (isset($_POST)){
   
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){
-    if (preg_match($patroia,$trimeposta)==0){
+   //if (preg_match($patroia,$trimeposta)==0){
       //if (strlen($trimgTestua)>9){
     //xml
         try{
@@ -119,10 +119,9 @@ if (isset($_POST)){
      // }else{
       //echo"<p> Galderaren luzerak gutxienez 10 karakterekoa izan behar du";
       //}
-    }else{
+    /*}else{
       echo"<p>'Posta elektronikoaren formatua ez da egokia";
-    }
-
+    }*/
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
   }
