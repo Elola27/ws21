@@ -48,7 +48,6 @@ if (isset($_POST)){
   preg_match('/^.+$/', $trimeOkerra3, $matcheseOkerra3);
   preg_match('/[1-3]$/', $trimgZail, $matchesgZail);
   preg_match('/^.+$/', $trimgArloa, $matchesgArloa);   
-  preg_match
   
   
 
