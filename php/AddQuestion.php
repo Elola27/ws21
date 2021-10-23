@@ -40,7 +40,8 @@ if (isset($_POST)){
  
   $patroia="/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/";
   preg_match('/^.+$/', $trimePosta, $matchesePosta);
-  preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
+  preg_match('/^.+$/', $trimgTestua, $matchesegTestua)
+  //preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
   preg_match('/^.+$/', $trimeZuzena, $matcheseZuzena);
   preg_match('/^.+$/', $trimeOkerra1, $matcheseOkerra1);
   preg_match('/^.+$/', $trimeOkerra2, $matcheseOkerra2);
