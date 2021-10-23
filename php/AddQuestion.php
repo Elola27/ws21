@@ -52,7 +52,7 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){  
     include 'DbConfig.php';
-      /*$niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
+      $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
       if ($niresqli->connect_errno){
         echo"<script> alert('Konexioa ez da ireki') </script>";
         //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
@@ -69,11 +69,11 @@ if (isset($_POST)){
         echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
         echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
       }
-      mysqli_close($niresqli);*/
+      mysqli_close($niresqli);
 
       //xml
 
-      /*try{
+      try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
         $galdera->addAttribute('author',$trimePosta);
@@ -88,10 +88,10 @@ if (isset($_POST)){
         $erantzunoker->addChild('response',$trimeOkerra3);  
         echo $xml->asXML();
         $xml->asXML('../xml/Questions.xml');
-        echo "Ongi egina";
+        echo "Erregistro berri bat XML fitxategian gehitu da";
         }catch(Exception $e){
           echo"Errorea";
-        }*/
+        }
   
         //json
         try{
@@ -110,7 +110,7 @@ if (isset($_POST)){
         $jsonData = str_replace(',', ','.PHP_EOL, $jsonData);
         $jsonData = str_replace('}', PHP_EOL.'}', $jsonData);
         file_put_contents("../json/Questions.json",$jsonData);
-        echo '<br>Judoka bat JSON fitxategian gehitu da<br>';
+        echo '<br>Erregistrio berri bat JSON fitxategian gehitu da<br>';
         }catch(Exception $e){
           echo"<script> alert('Error')</script>";
         }
