@@ -54,27 +54,27 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){
     if ($matchesPostaPatroia){
-      if (strlen($trimgTestua)>9){
+      //if (strlen($trimgTestua)>9){
     //xml
-      try{
-        $xml=simplexml_load_file("../xml/Questions.xml");
-        $galdera=$xml->addChild('assessmentItem');
-        $galdera->addAttribute('author',$trimePosta);
-        $galdera->addAttribute('subject',$trimgArloa);
-        $galderatestu=$galdera->addChild('itemBody');
-        $galderatestu->addChild('p',$trimgTestua);
-        $erantzunzuzen=$galdera->addChild('correctResponse');
-        $erantzunzuzen->addChild('response',$trimeZuzena);
-        $erantzunoker=$galdera->addChild('incorrectResponses');
-        $erantzunoker->addChild('response',$trimeOkerra1);
-        $erantzunoker->addChild('response',$trimeOkerra2);
-        $erantzunoker->addChild('response',$trimeOkerra3);  
+        try{
+          $xml=simplexml_load_file("../xml/Questions.xml");
+          $galdera=$xml->addChild('assessmentItem');
+          $galdera->addAttribute('author',$trimePosta);
+          $galdera->addAttribute('subject',$trimgArloa);
+          $galderatestu=$galdera->addChild('itemBody');
+          $galderatestu->addChild('p',$trimgTestua);
+          $erantzunzuzen=$galdera->addChild('correctResponse');
+          $erantzunzuzen->addChild('response',$trimeZuzena);
+          $erantzunoker=$galdera->addChild('incorrectResponses');
+          $erantzunoker->addChild('response',$trimeOkerra1);
+          $erantzunoker->addChild('response',$trimeOkerra2);
+          $erantzunoker->addChild('response',$trimeOkerra3);  
         //echo $xml->asXML();
-        $xml->asXML('../xml/Questions.xml');
-        echo nl2br("Erregistro berri bat XML fitxategian gehitu da");
+          $xml->asXML('../xml/Questions.xml');
+          echo nl2br("Erregistro berri bat XML fitxategian gehitu da");
         }catch(Exception $e){
           echo"Errorea";
-        }
+         }
   
         //json
         try{
@@ -116,9 +116,9 @@ if (isset($_POST)){
           echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
         }
         mysqli_close($niresqli);
-      }else{
-      echo"<p> Galderaren luzerak gutxienez 10 karakterekoa izan behar du";
-      }
+     // }else{
+      //echo"<p> Galderaren luzerak gutxienez 10 karakterekoa izan behar du";
+      //}
     }else{
       echo"<p>'Posta elektronikoaren formatua ez da egokia";
     }
