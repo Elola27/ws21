@@ -116,10 +116,10 @@ if (isset($_POST)){
         }
         mysqli_close($niresqli);
       }else{
-      echo"<script>alert('Galderaren luzerak gutxienez 10 karakterekoa izan behar du')</script>";
+      echo"<p> Galderaren luzerak gutxienez 10 karakterekoa izan behar du";
       }
     }else{
-      echo"<script> alert('Posta elektronikoaren formatua ez da egokia')</script>";
+      echo"<p>'Posta elektronikoaren formatua ez da egokia";
     }
 
   }else{
