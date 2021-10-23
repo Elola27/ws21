@@ -55,7 +55,7 @@ if (isset($_POST)){
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
     //xml
     if (preg_match($patroia,$trimePosta)==0){
-      echo"<p> ongi joan da";
+      echo"<script> alert('ongi joan da')</script>";
       //if (strlen($trimgTestua)>9){
       /*try{
         $xml=simplexml_load_file("../xml/Questions.xml");
