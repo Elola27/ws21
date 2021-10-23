@@ -53,6 +53,7 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){       
     //xml
+    if preg_match($patroia,$trimePosta){
       try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
@@ -113,7 +114,9 @@ if (isset($_POST)){
         echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
       }
       mysqli_close($niresqli);
-
+    }else{
+      echo "<p> Posta elektronikoaren formatua ez da egokia";
+    }
 
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
