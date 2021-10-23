@@ -55,6 +55,7 @@ if (isset($_POST)){
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
     //xml
     if (preg_match('/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/',$trimePosta)==0){
+      if (strlen($trimgTestua)>9){
       try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
@@ -96,7 +97,7 @@ if (isset($_POST)){
         }catch(Exception $e){
           echo"<script> alert('Error')</script>";
         } 
-    include 'DbConfig.php';
+      include 'DbConfig.php';
       $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
       if ($niresqli->connect_errno){
         echo"<script> alert('Konexioa ez da ireki') </script>";
@@ -115,6 +116,9 @@ if (isset($_POST)){
         echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
       }
       mysqli_close($niresqli);
+      }else{
+        echo"<p> Galderaren luzera minimoa 10 karakterekoa izan behar du";
+      }
     }else{
       echo "<p> Posta elektronikoaren formatua ez da egokia";
     }
