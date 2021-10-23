@@ -65,7 +65,7 @@ if (isset($_POST)){
         $erantzunoker->addChild('response',$trimeOkerra1);
         $erantzunoker->addChild('response',$trimeOkerra2);
         $erantzunoker->addChild('response',$trimeOkerra3);  
-        echo $xml->asXML();
+        //echo $xml->asXML();
         $xml->asXML('../xml/Questions.xml');
         echo nl2br("Erregistro berri bat XML fitxategian gehitu da");
         }catch(Exception $e){

@@ -17,7 +17,7 @@
 	  Irudia eta galdera erlazionatuta egon behar dute<br/></h5>
     <form id="galderenF" name="galderenF" action="AddQuestion.php?eposta=<?php $ePosta=$_GET["eposta"]; echo $ePosta;?>" method="post">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
-        <input type="text" id="eposta" name="eposta"><br>
+        <input type="text" id="eposta" name="eposta" value="<?php echo '$_GET[eposta]'?>"><br>
         <label for="galdera"> Galdera testua (*): </label>
         <input type="text" id="galdera" name="galdera"><br>
         <label for="zuzen"> Erantzun zuzena (*): </label>
