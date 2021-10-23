@@ -13,7 +13,7 @@
       Taulak DBeko irudiak ditu <br/>
 
       Une honetan garapen fasean aurkitzen den atala da, bitartean galderak kontsultatzeko joan hona:<br/>
-    <a href="ShowQuestions.php?eposta= <?php $ePosta=$_GET["eposta"]; echo $ePosta;?>"> Galderak irudirik gabe </a></span><br>
+    <a href="ShowQuestions.php?eposta=<?php $ePosta=$_GET["eposta"]; echo $ePosta;?>"> Galderak irudirik gabe </a></span><br>
 
 
 
