@@ -100,8 +100,8 @@ if (isset($_POST)){
         $galdera=new stdClass();
         $galdera->subject=$trimgArloa;
         $galdera->author=$trimePosta;
-        $galdera->itemBody= array (p => $trimgTestua);
-        $galdera->correctResponse= array(response=> $trimeZuzena);
+        $galdera->itemBody= array ("p" => $trimgTestua);
+        $galdera->correctResponse= array("response"=> $trimeZuzena);
         $galdera->incorrectResponses->response => array($trimeOkerra1,$trimeOkerra2,$trimeOkerra3);
         $arra[0]=$galdera;
         array_push($array->assessmentItems,$arra[0]);
