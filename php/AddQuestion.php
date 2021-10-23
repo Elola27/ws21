@@ -38,7 +38,7 @@ if (isset($_POST)){
   $trimgZail = trim($zailtasun);
   $trimgArloa = trim($arlo);
  
-  $patroia="/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/";
+  $patroia="/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)||[a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/";
   //preg_match($patroia, $trimePosta, $matchesePosta);
   preg_match('/^.+$/', $trimePosta, $matchesePosta);
   //preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
