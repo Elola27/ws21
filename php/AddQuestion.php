@@ -41,17 +41,18 @@ if (isset($_POST)){
   $patroia="/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/";
   //preg_match($patroia, $trimePosta, $matchesePosta);
   preg_match('/^.+$/', $trimePosta, $matchesePosta);
-  preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
+  //preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
   preg_match('/^.+$/', $trimeZuzena, $matcheseZuzena);
   preg_match('/^.+$/', $trimeOkerra1, $matcheseOkerra1);
   preg_match('/^.+$/', $trimeOkerra2, $matcheseOkerra2);
   preg_match('/^.+$/', $trimeOkerra3, $matcheseOkerra3);
   preg_match('/[1-3]$/', $trimgZail, $matchesgZail);
   preg_match('/^.+$/', $trimgArloa, $matchesgArloa);   
+  preg_match('/^.+$/', $trimgTestua, $matchesegTestua); 
   
   
 
-  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){       
+  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
     //xml
     if (preg_match('/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/',$trimePosta)==0){
       try{
