@@ -112,7 +112,7 @@ if (isset($_POST)){
         file_put_contents("../json/Questions.json",$jsonData);
         echo '<br>Judoka bat JSON fitxategian gehitu da<br>';
         }catch(Exception $e){
-          echo"Error";
+          echo"<script> alert('Error')</script>";
         }
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
