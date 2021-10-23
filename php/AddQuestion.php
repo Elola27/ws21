@@ -53,7 +53,7 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){       
     //xml
-    if preg_match($patroia,$trimePosta){
+    if preg_match($patroia,$trimePosta)==0){
       try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
