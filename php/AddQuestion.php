@@ -53,7 +53,7 @@ if (isset($_POST)){
   
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){
-    if ($matchesPostaPatroia){
+    if (preg_match($patroia,$trimeposta)==0){
       //if (strlen($trimgTestua)>9){
     //xml
         try{
@@ -77,7 +77,7 @@ if (isset($_POST)){
          }
   
         //json
-        try{
+        /*try{
         $data=file_get_contents("../json/Questions.json");
         $array=json_decode($data);
         $galdera=new stdClass();
@@ -96,7 +96,7 @@ if (isset($_POST)){
         echo nl2br('<br>Erregistrio berri bat JSON fitxategian gehitu da<br>');
         }catch(Exception $e){
           echo"<script> alert('Error')</script>";
-        } 
+        } */
         include 'DbConfig.php';
         $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
         if ($niresqli->connect_errno){
