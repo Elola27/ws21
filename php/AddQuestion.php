@@ -39,18 +39,21 @@ if (isset($_POST)){
   $trimgArloa = trim($arlo);
  
   $patroia="/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es) || [a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/";
-  preg_match($patroia, $trimePosta, $matchesePosta);
+  preg_match('/^.+$/', $trimePosta, $matchesePosta);
   preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
   preg_match('/^.+$/', $trimeZuzena, $matcheseZuzena);
   preg_match('/^.+$/', $trimeOkerra1, $matcheseOkerra1);
   preg_match('/^.+$/', $trimeOkerra2, $matcheseOkerra2);
   preg_match('/^.+$/', $trimeOkerra3, $matcheseOkerra3);
   preg_match('/[1-3]$/', $trimgZail, $matchesgZail);
-  preg_match('/^.+$/', $trimgArloa, $matchesgArloa);   
+  preg_match('/^.+$/', $trimgArloa, $matchesgArloa);  
+  preg_match($patroia,$trimeposta,$matchesPostaPatroia); 
   
   
 
-  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){       
+  if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa && strlen($trimgTestua)>9){
+    if ($matchesPostaPatroia){
+      if (strlen($trimgTestua)>9){
     //xml
       try{
         $xml=simplexml_load_file("../xml/Questions.xml");
@@ -93,26 +96,31 @@ if (isset($_POST)){
         }catch(Exception $e){
           echo"<script> alert('Error')</script>";
         } 
-    include 'DbConfig.php';
-      $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
-      if ($niresqli->connect_errno){
-        echo"<script> alert('Konexioa ez da ireki') </script>";
-        //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
-      }
-      if(!$niresqli->query("INSERT INTO dbt51_questions (Eposta,Galdera,erZuzena,erOkerra1,erOkerra2,erOkerra3,Zailtasuna,Arloa) VALUES ('$trimePosta','$trimgTestua','$trimeZuzena','$trimeOkerra1','$trimeOkerra2','$trimeOkerra3','$trimgZail','$trimgArloa')")){
-        echo ("Sartu diren datuak okerrak dira");
-        echo "Error:" . $niresqli->error;
+        include 'DbConfig.php';
+        $niresqli=new mysqli($zerbitzari,$erabiltzailea,$gakoa,$db);
+        if ($niresqli->connect_errno){
+          echo"<script> alert('Konexioa ez da ireki') </script>";
+          //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
+        }
+        if(!$niresqli->query("INSERT INTO dbt51_questions (Eposta,Galdera,erZuzena,erOkerra1,erOkerra2,erOkerra3,Zailtasuna,Arloa) VALUES ('$trimePosta','$trimgTestua','$trimeZuzena','$trimeOkerra1','$trimeOkerra2','$trimeOkerra3','$trimgZail','$trimgArloa')")){
+          echo ("Sartu diren datuak okerrak dira");
+          echo "Error:" . $niresqli->error;
+        }else{
+          echo ("Galdera berria gorde da!\n");
+          $ePosta=$_GET['eposta'];
+          echo nl2br ("\n\n");
+          echo nl2br ("<a href = ShowQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
+          echo nl2br ("<a href = ShowQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
+          echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
+          echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
+        }
+        mysqli_close($niresqli);
       }else{
-        echo ("Galdera berria gorde da!\n");
-        $ePosta=$_GET['eposta'];
-        echo nl2br ("\n\n");
-        echo nl2br ("<a href = ShowQuestions.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudi gabe.</a>\n");
-        echo nl2br ("<a href = ShowQuestionsWithImage.php?eposta=$ePosta>Ikusi dauden galdera guztiak irudiekin.</a>\n");
-        echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
-        echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
+      echo"<script>alert('Galderaren luzerak gutxienez 10 karakterekoa izan behar du')</script>";
       }
-      mysqli_close($niresqli);
-
+    }else{
+      echo"<script> alert('Posta elektronikoaren formatua ez da egokia')</script>";
+    }
 
   }else{
       echo "<p> Datu batzuk hutsak aurkitzen dira, bete";
