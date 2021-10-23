@@ -98,11 +98,11 @@ if (isset($_POST)){
         $data=file_get_contents("../json/Questions.json");
         $array=json_decode($data);
         $galdera=new stdClass();
-        $galdera->subject="$trimgArloa";
-        $galdera->author="$trimePosta";
-        $galdera->itemBody= array("p" => "$trimgTestua");
-        $galdera->correctResponse= array("response"=> "$trimeZuzena");
-        $galdera->incorrectResponses->response => array("$trimeOkerra1","$trimeOkerra2","$trimeOkerra3");
+        $galdera->subject=$trimgArloa;
+        $galdera->author=$trimePosta;
+        $galdera->itemBody= array('p' => $trimgTestua);
+        $galdera->correctResponse= array('response'=> $trimeZuzena);
+        $galdera->incorrectResponses->response => array($trimeOkerra1,$trimeOkerra2,$trimeOkerra3);
         $arra[0]=$galdera;
         array_push($array->assessmentItems,$arra[0]);
         $jsonData = json_encode($array);
