@@ -38,7 +38,7 @@ if (isset($_POST)){
   $trimgZail = trim($zailtasun);
   $trimgArloa = trim($arlo);
  
-  $patroia="^([a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es))||([a-zA-Z](\.[a-zA-Z]+@ehu\.(eus|es)))$";
+  //$patroia="^([a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es))||([a-zA-Z](\.[a-zA-Z]+@ehu\.(eus|es)))$";
   //$patroia2="/^[a-zA-Z](\.[a-zA-Z]+@ehu\.)(eus|es)$/";
   //preg_match($patroia, $trimePosta, $matchesePosta);
   preg_match('/^.+$/', $trimePosta, $matchesePosta);
@@ -54,11 +54,12 @@ if (isset($_POST)){
   
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
-   if (preg_match($patroia,$trimePosta)==0){
+   if (preg_match('/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/',$trimePosta)==0){
     //if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
       //echo"<script> alert('ongi joan da')</script>";
       if (strlen($trimgTestua)>9){
-      try{
+        echo"<p>ONGI Datu guztiak";
+      /*try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
         $galdera->addAttribute('author',$trimePosta);
@@ -117,7 +118,7 @@ if (isset($_POST)){
         echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
         echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
       }
-      mysqli_close($niresqli);
+      mysqli_close($niresqli);*/
       }else{
         echo"<p> Galderaren luzera minimoa 10 karakterekoa izan behar du";
       }
