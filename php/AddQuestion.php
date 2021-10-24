@@ -38,7 +38,7 @@ if (isset($_POST)){
   $trimgZail = trim($zailtasun);
   $trimgArloa = trim($arlo);
  
-  $patroia="/[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)/";
+  $patroia='/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/';
 
   //$patroia2="/^[a-zA-Z](\.[a-zA-Z]+@ehu\.)(eus|es)$/";
   //preg_match($patroia, $trimePosta, $matchesePosta);
@@ -59,7 +59,7 @@ if (isset($_POST)){
     //if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
       //echo"<script> alert('ongi joan da')</script>";
       if (strlen($trimgTestua)>9){
-        echo"<p>ONGI Datu guztiak";
+        echo"<p>ONGI Datu guztiak $trimePosta";
       /*try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
