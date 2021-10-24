@@ -117,7 +117,7 @@ if (isset($_POST)){
         echo nl2br ("<a href = QuestionFormWithImage.php?eposta=$ePosta>Beste galdera bat egiteko.</a>\n");
         echo n12br ("Oraingoz goian agertzen diren estekek ez dute funtzionatzen eta beraz, gomendatzen da bertikaleko nabigazio-barrako estekak erabiltzea, arazoa konpontzen ari gara");
       }
-      mysqli_close($niresqli);*/
+      mysqli_close($niresqli);
       }else{
         echo"<p> Galderaren luzera minimoa 10 karakterekoa izan behar du";
       }
