@@ -54,9 +54,9 @@ if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
     $rows_cnt = $ema->num_rows;
     mysqli_close($esteka);
     if ($rows_cnt==1){$rows_cnt=0;
-        //echo "<script> alert('Ongi etorri webgunera') </script>";
+        echo "<script> alert('Ongi etorri webgunera') </script>";
         header('location:Layout.php?eposta='.$eposta);
-        echo "<script> alert('Ongi etorri webgunera') </script>"                  
+        //echo "<script> alert('Ongi etorri webgunera') </script>"                  
     }else{
         echo "<script> alert('Ez da existitzen erabiltzailerik $eposta honekin datu-basean') </script>";
     }
