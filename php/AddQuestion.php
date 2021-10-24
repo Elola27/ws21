@@ -124,7 +124,7 @@ if (isset($_POST)){
         echo"<p> Galderaren luzera minimoa 10 karakterekoa izan behar du";
       }
     }else{
-      echo "<p> Posta elektronikoaren formatua ez da egokia";
+      echo "<p> Posta elektronikoaren formatua ez da egokia $trimePosta";
     }
 
   }else{
