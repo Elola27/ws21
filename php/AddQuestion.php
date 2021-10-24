@@ -53,8 +53,8 @@ if (isset($_POST)){
   
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
-    //xml
-    if (preg_match($patroia,$trimePosta)==0){
+   //if (preg_match($patroia,$trimePosta)==0){
+    if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
       //echo"<script> alert('ongi joan da')</script>";
       if (strlen($trimgTestua)>9){
       try{
