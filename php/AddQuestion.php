@@ -38,7 +38,7 @@ if (isset($_POST)){
   $trimgZail = trim($zailtasun);
   $trimgArloa = trim($arlo);
  
-  $patroia="/^[a-zA-Z]+[0-9]{3}@(ikasle\.ehu\.)(eus|es)$||^[a-zA-Z](\.[a-zA-Z]+@ehu\.)(eus|es)$/";
+  $patroia="^[a-zA-Z]+[0-9]{3}@(ikasle\.ehu\.)(eus|es)$||^[a-zA-Z](\.[a-zA-Z]+@ehu\.)(eus|es)$";
   //preg_match($patroia, $trimePosta, $matchesePosta);
   preg_match('/^.+$/', $trimePosta, $matchesePosta);
   //preg_match('^.{10}^', $trimgTestua, $matchesgTestua);
@@ -53,8 +53,8 @@ if (isset($_POST)){
   
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
-   //if (preg_match($patroia,$trimePosta)==0){
-    if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
+   if (preg_match($patroia,$trimePosta)==0){
+    //if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
       //echo"<script> alert('ongi joan da')</script>";
       if (strlen($trimgTestua)>9){
       try{
