@@ -56,11 +56,9 @@ if (isset($_POST)){
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
    if (preg_match($patroia,$trimePosta)==0){
-    //if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
-      //echo"<script> alert('ongi joan da')</script>";
       if (strlen($trimgTestua)>9){
-        echo"<p>ONGI Datu guztiak $trimePosta";
-      /*try{
+        //echo"<p>ONGI Datu guztiak $trimePosta";
+      try{
         $xml=simplexml_load_file("../xml/Questions.xml");
         $galdera=$xml->addChild('assessmentItem');
         $galdera->addAttribute('author',$trimePosta);
@@ -124,7 +122,7 @@ if (isset($_POST)){
         echo"<p> Galderaren luzera minimoa 10 karakterekoa izan behar du";
       }
     }else{
-      echo "<p> Posta elektronikoaren formatua ez da egokia $eposta";
+      echo "<p> Posta elektronikoaren formatua ez da egokia";
     }
 
   }else{
