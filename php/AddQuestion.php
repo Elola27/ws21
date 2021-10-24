@@ -54,7 +54,7 @@ if (isset($_POST)){
   
 
   if ($matchesePosta && $matchesgTestua && $matcheseZuzena && $matcheseOkerra1 && $matcheseOkerra2 && $matcheseOkerra3 && $matchesgZail && $matchesgArloa){       
-   if (preg_match("/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$ix/",$trimePosta)==0){
+   if (preg_match("/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/ix",$trimePosta)==0){
     //if(filter_var($trimePosta,FILTER_VALIDATE_EMAIL)){ 
       //echo"<script> alert('ongi joan da')</script>";
       if (strlen($trimgTestua)>9){
