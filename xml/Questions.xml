@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="ShowXmlQuestions.xsl"?>
 <assessmentItems>
 	<assessmentItem author="rosa.arruabarrena@ehu.es" subject="Mikologia">
-		<itemBody> 
+		<itemBody>
 			<p>Zein Amanita da jangarria?</p>
 		</itemBody>
 		<correctResponse>
@@ -25,6 +25,19 @@
 			<response>Facebook</response>
 			<response>Twiter</response>
 			<response>VMicrosoft</response>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem author="oelola001@ikasle.ehu.eus" subject="Kirola">
+		<itemBody>
+			<p>Nor da onena denetan</p>
+		</itemBody>
+		<correctResponse>
+			<response>Phelps</response>
+		</correctResponse>
+		<incorrectResponses>
+			<response>James</response>
+			<response>Bolt</response>
+			<response>Gauff</response>
 		</incorrectResponses>
 	</assessmentItem>
 </assessmentItems>
