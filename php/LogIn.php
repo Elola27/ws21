@@ -50,7 +50,6 @@ if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
 
   if (!($ema)){
     echo "Errorea kontsultan<br >". $ema->error;
-    echo "<script> alert('BOBO') </script>";
   }else{
     $rows_cnt = $ema->num_rows;
     mysqli_close($esteka);
@@ -58,7 +57,7 @@ if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
         echo "<script> alert('Ongi etorri webgunera') </script>";
         header('location:Layout.php?eposta='.$eposta);                  
     }else{
-        echo "<script> alert('Pasahitza ez da zuzena. Saiatu berriro') </script>";
+        echo "<script> alert('Ez da existitzen erabiltzailerik $eposta honekin datu-basean') </script>";
     }
   }
 }
