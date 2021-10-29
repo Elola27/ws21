@@ -1,4 +1,4 @@
 <?php
-	echo "<script> alert('Sesioa itxi egin da.') </script>";
+	echo "<script> alert('Saioa itxi egin da.') </script>";
 	header ('Location:Layout.php');
 ?>

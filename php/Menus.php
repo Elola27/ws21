@@ -32,6 +32,7 @@ if ($eposta==null){
   echo"<span><a href=ShowXmlQuestions.php?eposta=$eposta>XML galderak ikusteko</a></span>";
   echo"<span><a href=ShowJsonQuestions.php?eposta=$eposta>JSON galderak ikusteko</a></span>";
   echo"<span><a href=Credits.php?eposta=$eposta>Kredituak</a></span>";
+  echo"<span><a href=HandlingQuizesAjax.php?eposta=$eposta>AJAX galderak kudeaketa</a></span>";
 }
 ?>   
 </nav>

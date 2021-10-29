@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="ShowXmlQuestions.xsl"?>
 <assessmentItems>
 	<assessmentItem author="rosa.arruabarrena@ehu.es" subject="Mikologia">
@@ -27,17 +27,4 @@
 			<response>VMicrosoft</response>
 		</incorrectResponses>
 	</assessmentItem>
-	<assessmentItem author="oelola001@ikasle.ehu.eus" subject="Kirola">
-		<itemBody>
-			<p>Nor da onena denetan</p>
-		</itemBody>
-		<correctResponse>
-			<response>Phelps</response>
-		</correctResponse>
-		<incorrectResponses>
-			<response>James</response>
-			<response>Bolt</response>
-			<response>Gauff</response>
-		</incorrectResponses>
-	</assessmentItem>
-</assessmentItems>
+<assessmentItem author="oelola008@ikasle.ehu.es" subject="Saskibaloia"><itemBody><p>Nor da onena denetan</p></itemBody><correctResponse><response>Michael Jordan</response></correctResponse><incorrectResponses><response>James</response><response>Curry</response><response>Bryant</response></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject="Saskibaloia"><itemBody><p>Nor da onena denetan</p></itemBody><correctResponse><response>Michael Jordan</response></correctResponse><incorrectResponses><response>James</response><response>Curry</response><response>Bryant</response></incorrectResponses></assessmentItem><assessmentItem author="" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject="Saskibaloia"><itemBody><p>Nor da onena denetan</p></itemBody><correctResponse><response>Michael Jordan</response></correctResponse><incorrectResponses><response>James</response><response>Curry</response><response>Bryant</response></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject=""><itemBody><p/></itemBody><correctResponse><response/></correctResponse><incorrectResponses><response/><response/><response/></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject="Saskibaloia"><itemBody><p>Nor da onena denetan</p></itemBody><correctResponse><response>Michael Jordan</response></correctResponse><incorrectResponses><response>James</response><response>Curry</response><response>Bryant</response></incorrectResponses></assessmentItem><assessmentItem author="oelola008@ikasle.ehu.es" subject="informatika"><itemBody><p>Quien es el puto amo</p></itemBody><correctResponse><response>unax</response></correctResponse><incorrectResponses><response>elola</response><response>loidi</response><response>tarek</response></incorrectResponses></assessmentItem></assessmentItems>
