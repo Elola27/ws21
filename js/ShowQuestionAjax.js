@@ -45,7 +45,8 @@ $(function() {
          cache:false,
          success: function(data) {
             $('#erakutsi').empty();
-            row=('<table border=1 widht=%100 id=taula style="margin-left:auto; margin-right:auto;">');
+            row=('<p align="center">Hemen agertuko dira sortuta dauden galderak </p>');
+            row+=('<table border=1id=taula style="margin-left:auto; margin-right:auto;">');
             row+=('<tr><th> Galdera </th><th> Egilea </th><th> Erantzun Zuzena </th></tr>');   
             $.each(data.assessmentItems,function(key,value){
                 /*$.each(data.assessmentItems[key].itemBody,function(a,b){

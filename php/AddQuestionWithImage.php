@@ -1,32 +1,163 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?php include '../html/Head.html'?>
-  
+    <?php include '../html/Head.html'?>
+    <?php include 'DbConfig.php'?>
 </head>
 <body>
-  <?php include '../php/Menus.php' ?>
-  <section class="main" id="s1">
-    <div>
-    <?php
-        $niresqli=new mysqli($zerbitzaria,$erabiltzailea,$gakoa,$db);
-        if ($niresqli->connect_errno){
-          die("Huts egin du konexioak MySQL-ra: (".$niresqli->connect_errno . ")". $niresqli->connect_error);
-        }
-        if(!$niresqli->query("INSERT INTO dbt51_questions (Eposta,Galdera,erZuzena,erOkerra1,erOkerra2,erOkerra3,Zailtasuna,Arloa) VALUES ('$_POST[eposta]','$_POST[galdera]','$_POST[zuzen]','$_POST[oker1]','$_POST[oker2]','$_POST[oker3]',$_POST[zailtasun],'$_POST[arlo]')")){
-          echo "Errorea datuak sartzerako orduan:(".$niresqli->errno.")" .$niresqli->error;
-        }
+    <?php include '../php/Menus.php' ?>
+    <section class="main" id="s1">
+        <div>
+            <?php
+            function eremuakKonprobatu($datuak) {
+                if (!preg_match("/^(([a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es))|([a-zA-Z]+\.[a-zA-Z]+@ehu\.(eus|es)|[a-zA-Z]+@ehu\.(eus|es)))$/i", $datuak["eposta"])) {
+                    return 'Eposta okerra';
+                } else if (strlen($datuak["galdera"]) < 10 || !ezHutsaVal($datuak["galdera"])) {
+                    return 'Galdera testua oso motza';
+                } else if (!ezHutsaVal($datuak["zuzen"])) {
+                    return 'Erantzun zuzena hutsa da';
+                } else if (!ezHutsaVal($datuak["oker1"])) {
+                    return '1. erantzun okerra hutsa da';
+                } else if (!ezHutsaVal($datuak["oker2"])) {
+                    return '2. erantzun okerra hutsa da';
+                } else if (!ezHutsaVal($datuak["oker3"])) {
+                    return '3. erantzun okerra hutsa da';
+                } else if (!(1 <= $datuak["zailtasun"] && $datuak["zailtasun"] <= 3)) {
+                    return 'Zailtasuna okerra da';
+                } else if (!ezHutsaVal($datuak["arlo"])) {
+                    return 'Gaia okerra da';
+                }
+                return '';
+            }
 
-        echo "Erregistro berri bat sartu da datu basean \n";
-        $niresqli->close();
-      ?>
-      <br>
-      <a href='ShowQuestions.php'> Gordeta dauden galderak konsultatzeko sakatu hemen (Irudirik gabe) </a></span><br>
-      <a href='ShowQuestionsWithImage.php'> Gordeta dauden galderak konsultatzeko sakatu hemen (Irudiak ikusgarri) </a></span><br>
-      <a href='AddQuestionWithImage.php'> Galdera berri bat sortzeko sakatu hemen </a></span>
+            function ezHutsaVal($text){
+                return preg_match("/^((\S)+( )*)+$/", $text);
+            }
 
-    </div>
-  </section>
-  <?php include '../html/Footer.html' ?>
+            function galderaGehitu() {
+                if ($_SERVER['REQUEST_METHOD'] == 'GET') $aldagaiak = $_GET;
+                else if ($_SERVER['REQUEST_METHOD'] == 'POST') $aldagaiak = $_POST;
+                else die("Konekzioa egitean datuak ezin izan dira lortu");
+
+                if (($konprobazioa = eremuakKonprobatu($aldagaiak)) != '') {
+                    return "<b style='color: red'>Galdera ez da ondo bete: ".$konprobazioa."</b>
+                            <button onclick='window.history.back()'>Berriro saiatu</button>";
+                }
+
+                $emaitza = '';
+                // DB-n gorde
+                $emaitza .= db_gorde($aldagaiak);
+
+                // XML-n gorde
+                $emaitza .= xml_gorde($aldagaiak);
+
+                // JSON-en gorde
+                $emaitza .= json_gorde($aldagaiak);
+
+                if ($emaitza != ''){
+                    return $emaitza."<button onclick='window.history.back()'>Berriro saiatu</button>";
+                }
+
+                //Eposta URL-an badago orduan eposta defektuz hau izango da
+                $parametroak = "";
+                if (isset($_GET['eposta'])) {
+                    $parametroak = "?eposta=".$_GET['eposta'];
+                    $parametroak = $parametroak."&irudia=".$_GET['irudia'];
+                }
+                return "<p>Galdera ondo gorde da DB-n, XML-n eta JSON-en</p> 
+                        <p><a href='ShowQuestions.php".$parametroak."'>Galdera guztiak ikusi</a></p>
+                        <p><a href='ShowQuestionsWithImage.php".$parametroak."'>Galdera guztiak irudiekin ikusi</a></p>
+                        <p><a href='ShowJsonQuestions.php".$parametroak."'>JSON galdera guztiak ikusi</a></p>
+                        <p><a href='ShowXmlQuestions.php".$parametroak."'>XML galdera guztiak ikusi</a></p>
+                        <p><a href='QuestionFormWithImage.php".$parametroak."'>Beste galdera bat gehitu</a></p>";
+                        
+            }
+
+            function db_gorde(array $aldagaiak)
+            {
+                global $zerbitzaria, $erabiltzailea, $gakoa, $db;
+                $nireSQLI = new mysqli($zerbitzaria, $erabiltzailea, $gakoa, $db);
+
+                if ($nireSQLI->connect_error) {
+                    return "<b style='color: red'>DB-ra konexio bat egitean errore bat egon da: " . $nireSQLI->connect_error . "</b><br/>";
+                }
+
+                $irudia = "";
+                if ($_FILES["irudia"]["tmp_name"] != "") {
+                    $irudiaIzen = $_FILES["irudia"]["tmp_name"];
+                    $irudia = addslashes(file_get_contents($irudiaIzen));
+                }
+                echo"<script>console.log('.$irudia.')</script>";
+                $sqlInsertQuestion = "INSERT INTO dbt51_questions(Eposta, Galdera, erZuzena, erOkerra1, erOkerra2, erOkerra3, Zailtasuna, Arloa, Argazkia) 
+                VALUES ('$aldagaiak[eposta]', '$aldagaiak[galdera]', '$aldagaiak[zuzen]', '$aldagaiak[oker1]', '$aldagaiak[oker2]', 
+                        '$aldagaiak[oker3]', '$aldagaiak[zailtasun]', '$aldagaiak[arlo]', '$irudia')";
+
+                if (!$nireSQLI->query($sqlInsertQuestion)) {
+                    return '<b style="color: red">Errorea: ' . $nireSQLI->error . "</b><br/>";
+                }
+
+                return "";
+            }
+
+            function xml_gorde(array $aldagaiak){
+                $fitxategia = "../xml/Questions.xml";
+                $xml = simplexml_load_file($fitxategia);
+
+                // Konprobatu fitxategia ondo kargatu dela
+                if (!$xml) return "<b style='color: red'>Ez da Questions.xml fitxategia aurkitu, ezin izan da XML bezala gorde.</b><br/>";
+
+                // Galdetegia bete
+                $galdetegiaItem = $xml->addChild('assessmentItem');
+                $galdetegiaItem->addAttribute('author', $aldagaiak["eposta"]);
+                $galdetegiaItem->addAttribute('subject', $aldagaiak["arlo"]);
+                $galdetegiaItem->addChild('itemBody')->addChild('p', $aldagaiak["galdera"]);
+                $galdetegiaItem->addChild('correctResponse')->addChild('response', $aldagaiak["zuzen"]);
+                $erantzunOkerrak = $galdetegiaItem->addChild('incorrectResponses');
+                $erantzunOkerrak->addChild('response', $aldagaiak["oker1"]);
+                $erantzunOkerrak->addChild('response', $aldagaiak["oker2"]);
+                $erantzunOkerrak->addChild('response', $aldagaiak["oker3"]);
+
+                $domxml = new DOMDocument('1.0');
+                $domxml->preserveWhiteSpace = false;
+                $domxml->formatOutput = true;
+                $domxml->loadXML($xml->asXML());
+                $gordeketa = $domxml->save($fitxategia);
+                if (!$gordeketa) return "<b style='color: red'>Ezin izan da XML fitxategia gorde.</b><br/>";
+                return "";
+            }
+
+            function json_gorde(array $aldagaiak) {
+                $fitxategia = "../json/Questions.json";
+                $json_raw = file_get_contents($fitxategia);
+                if (!$json_raw) return "<b style='color: red'>Ez da Questions.json fitxategia aurkitu, ezin izan da JSON bezala gorde.</b><br/>";
+                $json =json_decode($json_raw);
+
+                $galdetegia = new stdClass();
+                $galdetegia->subject = $aldagaiak["arlo"];
+                $galdetegia->author = $aldagaiak["eposta"];
+                $galdetegia->itemBody = new stdClass();
+                $galdetegia->itemBody->p = $aldagaiak["galdera"];
+                $galdetegia->correctResponse = new stdClass();
+                $galdetegia->correctResponse->response = $aldagaiak["zuzen"];
+                $erantzunoker = array($aldagaiak["oker1"],
+                    $aldagaiak["oker2"],
+                    $aldagaiak["oker3"]);
+                $galdetegia->incorrectResponses = new stdClass();
+                $galdetegia->incorrectResponses->response = $erantzunoker;
+
+                array_push($json->assessmentItems, $galdetegia);
+                $jsonBerria = json_encode($json, JSON_PRETTY_PRINT);
+
+                $gordeketa = file_put_contents($fitxategia,$jsonBerria);
+                if (!$gordeketa || $gordeketa === 0) return "<b style='color: red'>Ezin izan da JSON fitxategia gorde.</b><br/>";
+            }
+
+            echo "<p>".galderaGehitu()."</p>"
+            ?>
+
+
+        </div>
+    </section>
+    <?php include '../html/Footer.html' ?>
 </body>
 </html>

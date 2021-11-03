@@ -3,6 +3,7 @@
 <head>
 <?php include '../html/Head.html'?> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="../js/ShowImageInForm.js"></script>
   <script language="JavaScript">
           $(document).ready(function(){
                     $.betetadagoen = function()
@@ -30,7 +31,6 @@
                     }
                     $.deiturak = function(){
                       var deitura=$("#deitura").val();
-                      console.log(deitura);
                       if (deitura.match(/^([A-Z]([a-z]+)(\s[A-Z]([a-z]+)\s?)+)+$/)){
                         return true;
                       }else{
@@ -62,7 +62,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id="register" name="register" action="" method="post">
+      <form id="register" name="register" action="" method="post" onreset="hide_image()" enctype="multipart/form-data">
           <h1> Sartu beharrezko datuak erregistroa burutzeko mesedez </h1>
           <p> Erabiltzaile mota(*): 
         <input type="radio" id="irakasle" name="mota" value="Irakaslea">
@@ -77,6 +77,9 @@
         <input type="password" id="pasahitz" name="pasahitz"><br>
         <label for="pasahitzerrepikapen"> Pasahitza errepikatu (*): </label>
         <input type="password" id="pasahitzerrepikapen" name="pasahitzerrepikapen"><br>
+        Perfileko irudia sartzeko (Hautazkoa):
+        <input type="file" accept="image/*" name="irudia" id="irudia" onchange="show_image(this, 'reset')"><br>      
+
         <input type="reset" value="Hustu" id="reset">
         <input type="submit" value="Igorri galdera" id="submit" >
       </form>
@@ -88,6 +91,22 @@
 
 <?php
 if (isset($_POST['eposta'])){
+  $dir = "";
+  if ($_FILES["irudia"]["tmp_name"] != "") {
+    $irudia = file_get_contents($_FILES["irudia"]["tmp_name"]);
+    $izena = explode(".", $_FILES['irudia']['name']);
+    $dir = "../images/erabiltzaileak/" . str_replace("@", ".", $_POST["eposta"]) .".". $izena[sizeof($izena)-1];
+    if (!empty($irudia)){
+      file_put_contents($dir, $irudia);
+    }
+  }
+  $irudia = "";
+  if ($_FILES["irudia"]["tmp_name"] != "") {
+    $irudiaIzen = $_FILES["irudia"]["tmp_name"];
+    $irudia = addslashes(file_get_contents($irudiaIzen));
+  }
+    //echo "console.log($irudia)";
+  echo "<script> console.log('$dir + $irudi') </script>";
   $pasahitz=$_POST['pasahitz'];
   $pasahitzerrepikatu=$_POST['pasahitzerrepikapen'];
   if (strlen($pasahitz)>=8){
@@ -98,11 +117,14 @@ if (isset($_POST['eposta'])){
       echo"<script> alert('Konexioa ez da ireki') </script>";
       //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
     }
-    if(!$niresqli->query("INSERT INTO dbt51_user(Eposta,Deiturak,Pasahitza,Mota) VALUES ('$_POST[eposta]','$_POST[deitura]','$_POST[pasahitz]','$_POST[mota]')")){
-      echo"<script> alert('Dagoeneko erabiltzaile bat sortuta dago emandako datuekin (eposta berdinekoa)')</script>";  
+    if(!$niresqli->query("INSERT INTO dbt51_user(Eposta,Deiturak,Pasahitza,Mota,Irudia,Direktorioa) VALUES ('$_POST[eposta]','$_POST[deitura]','$_POST[pasahitz]','$_POST[mota]','$irudia', '$dir')")){
+      //echo"<script> alert('Dagoeneko erabiltzaile bat sortuta dago emandako datuekin (eposta berdinekoa)')</script>";  
+      $mezua = str_replace("'", "\'", $niresqli->error);
+      echo "<script>alert('Errorea datu-basean: $mezua')</script>";
       //echo "<script> alert('Dagoeneko posta horretarako erabiltzailea sortuta dago') </script>";
     }else{
       echo "<script> alert('Erabiltzaile berria sortuta') </script>";
+      echo "<script type='text/javascript'> window.location='Layout.php' </script>";
     }
     mysqli_close($niresqli);
     }else{
@@ -111,7 +133,6 @@ if (isset($_POST['eposta'])){
   }else{
     echo "<script> alert('Emandako pasahitzaren luzera 8 baino txikiagoa da') </script>";
   }
-  
 }
 /*if (isset($_POST['mota']) && isset($_POST['eposta']) && isset($_POST['deitura']) && isset($_POST['pasahitz']) && isset($_POST['pasahitzerrepikapen'])){
     $pasahitz=$_POST['pasahitz'];

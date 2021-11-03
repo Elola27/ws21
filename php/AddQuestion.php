@@ -75,7 +75,7 @@ if (isset($_POST)){
         $xml->asXML('../xml/Questions.xml');
         echo nl2br("Erregistro berri bat XML fitxategian gehitu da");
         }catch(Exception $e){
-          echo"Errorea";
+          echo"Errorea XML fitxategian";
         }
   
         //json

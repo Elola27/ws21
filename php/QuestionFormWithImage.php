@@ -2,9 +2,9 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
-<!--<script src='../js/jquery-3.4.1.min.js'></script>
+<script src='../js/jquery-3.4.1.min.js'></script>
   <script src='../js/ValidateFieldsQuestionJQ.js'></script>
-    <script src='../js/ValidateFieldsQuestionJS.js'></script>-->
+    <!--<script src='../js/ValidateFieldsQuestionJS.js'></script>-->
   <script src='../js/ShowImageInForm.js'></script>
 </head>
 
@@ -15,7 +15,8 @@
     <div>      
     <h5>Irudia duen galdera baten datuak erabiltzaileak sar ditzan <br/>
 	  Irudia eta galdera erlazionatuta egon behar dute<br/></h5>
-    <form id="galderenF" name="galderenF" action="AddQuestion.php?eposta=<?php $ePosta=$_GET["eposta"]; echo $ePosta;?>" method="post">
+    <form id="galderenF" name="galderenF" action="AddQuestionWithImage.php<?php if (isset($_GET['eposta'])){echo '?eposta='.$_GET['eposta']."&irudia=".$_GET['irudia'];}?>"
+     method="post" onreset="hide_image()" enctype="multipart/form-data">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
         <input type="text" id="eposta" name="eposta" value=<?php echo $_GET['eposta']?>><br>
         <label for="galdera"> Galdera testua (*): </label>
@@ -37,11 +38,11 @@
         <label for="handi">Handia</label></p>
         <label for="arlo"> Galderaren arloa(*): </label>
         <input type="text" id="arlo" name="arlo"><br>
-        Irudia(Hautazkoa): <input type="file" name="irudia" id="irudia" accept="image/*" onchange="previewFile(event);"/><br>
-        <img id="igotakoirudia" src="" /></br>
-        <input type="reset" value="Hustu" id="reset" onclick="ezabatuigotakoirudia();">
-        <input type="submit" value="Igorri galdera" id="submit">
         
+        <label for= irudia> Irudia(Hautazkoa): </label>
+        <input type="file" accept="image/*" name="irudia" id="irudia" onchange="show_image(this, 'reset')"><br>
+        <input type="reset" value="Hustu" id="reset">
+        <input type="submit" value="Igorri galdera" id="submit">
       </form>  
 
 

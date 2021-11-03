@@ -8,14 +8,16 @@
   <script src='../js/ShowImageInForm.js'></script>-->
   <script type="text/javascript" src='../js/ShowQuestionAjax.js'></script>
   <script type="text/javascript" src='../js/AddQuestionAjax.js'></script>
-</head>
+  <script type="text/javascript" src='../js/JsonQuestionsCouinter.js'></script>
+  <script type="text/javascript" src ='../js/ShowImageInForm.js'></script>
+  </head>
 <body>
 <?php include "Menus.php" ?>
-  <section class="main" id="s1">
-    <div id="form">      
-    <h5>Irudia duen galdera baten datuak erabiltzaileak sar ditzan <br/>
-	  Irudia eta galdera erlazionatuta egon behar dute<br/></h5>
-    <form id="galderenF" name="galderenF">
+  <section class="main" id="s1"style="display:flex">
+    <div id="form" style="float:left">      
+    <p id="galderak" ></p>
+    <h5>Galdera sortzeko formularioa<br/></h5>
+    <form id="galderenF" name="galderenF" onreset="hide_image()" style="box-sizing:border-box">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
         <input type="text" id="eposta" name="eposta" value=<?php echo $_GET['eposta']?>><br>
         <label for="galdera"> Galdera testua (*): </label>
@@ -37,17 +39,17 @@
         <label for="handi">Handia</label></p>
         <label for="arlo"> Galderaren arloa(*): </label>
         <input type="text" id="arlo" name="arlo"><br>
-        Irudia(Hautazkoa): <input type="file" name="irudia" id="irudia" accept="image/*" onchange="previewFile(event);"/><br>
+        Irudia(Hautazkoa): <input type="file" name="irudia" id="irudia" accept="image/*" onchange="show_image(this,'reset');"/><br>
         <img id="igotakoirudia" src="" /></br>
         <input type="reset" value="Hustu" id="reset" > 
       </form>
       <input type="button" value="Add Questions" id="add" onclick="bidaliDatuak()">
       <input type="button" value="Show Questions" id="show">
+      <div id="emaitza">
+      </div>
     </div>
-    <div id="emaitza">
-      <p> Galdera berria gehitzearen emaitzak argitaratzeko...</p>
-    </div>
-    <div id="erakutsi">
+    <div id="erakutsi" style="float:right"> 
+    <p style="text-align:center;">  Hemen agertuko dira sortuta dauden galderak </p>
     </div>
   </section>
   <?php include '../html/Footer.html' ?>

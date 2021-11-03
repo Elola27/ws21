@@ -1,65 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?php include '../html/Head.html'?> 
+    <?php include '../html/Head.html'?>
+    <?php include 'DbConfig.php'?>
 </head>
 <body>
- 
-  <?php include '../php/Menus.php' ?>
-  <section class="main" id="s1">
-    <div>
-      <form id="login" name="login" action="" method="post">
-        <label for="eposta"> Eposta (*): </label>
-        <input type="text" id="eposta" name="eposta"><br>
-        <label for="pasahitz"> Pasahitza (*): </label>
-        <input type="password" id="pasahitz" name="pasahitz"><br>
-        <input type="reset" value="Hustu" id="reset">
-        <input type="submit" value="Igorri galdera" id="submit"> 
-        <script>
-        $(document).ready(function(){
-          $('#register').submit(function(){
-            if (($("#eposta").val().length>0) && ($("#pasahitz").val().length>0)){
-              return true;
-            }else{
-              alert("Datuak bete");
-              return false;
-            } 
-          })
-        })
-      </script>
-      </form>
-    </div>
-  </section>
-  <?php include '../html/Footer.html' ?>
+    <?php include '../php/Menus.php' ?>
+    <section class="main" id="s1" style="display: flex">
+        <div>
+            <form id="loginF" name="loginF" method="post">
+                <!-- Eposta -->
+                <label for="eposta">Eposta (*):</label>
+                <input type="text" id="eposta" name="eposta"><br>
+
+                <!-- Pasahitza -->
+                <label for="pasahitza">Pasahitza (*):</label>
+                <input type="password" id="pasahitza" name="pasahitza"><br>
+
+                <!-- Galdera igorri -->
+                <input type="submit" name="submit" id="submit" value="Galdera igorri"><br>
+            </form>
+            <?php
+            
+            if (!empty($_POST)){
+                $datuak = $_POST;
+                global $zerbitzaria, $erabiltzailea, $gakoa, $db;
+                
+                $nireSQLI = new mysqli($zerbitzaria, $erabiltzailea, $gakoa, $db);
+
+                if($nireSQLI->connect_error) {
+                    die("DB-ra konexio bat egitean errore bat egon da: " . $nireSQLI->connect_error);
+                }
+
+                $ema = $nireSQLI->query("SELECT Eposta, Pasahitza, Direktorioa FROM dbt51_user WHERE Eposta = '".$_POST["eposta"]."'");
+                if (($tabladatuak = $ema->fetch_row()) != null) {
+                    if ($datuak["eposta"] == $tabladatuak[0] && $datuak["pasahitza"]==$tabladatuak[1]) {
+                        /*echo '<script> alert("Logeatu egin zara, '.$tabladatuak["eposta"].'") </script>';
+                        header("location: Layout.php?eposta=".$tabladatuak[0]."&irudia=".$tabladatuak[2]);*/
+                        echo"<script> alert('Ongi etorri webgunera ".$tabladatuak[0]."') </script>";
+                        echo "<script type='text/javascript'> window.location='Layout.php?eposta=".$tabladatuak[0]."&irudia=".$tabladatuak[2]."'</script>";
+                    } else {
+                        echo '<p style="color: red"> Zure erabiltzailea edo pasahitza ez dira zuzenak. </p>';
+                    }
+                } else {
+                    echo '<p style="color: red"> Erabiltzailea ez da existitzen.</p>';
+                }
+
+            }
+            ?>
+        </div>
+    </section>
+    <?php include '../html/Footer.html' ?>
 </body>
 </html>
-
-<?php
-
-if (isset($_POST['eposta'])&& isset($_POST['pasahitz'])){
-  $eposta=$_POST['eposta'];
-  $pasahitz=$_POST['pasahitz'];
-  include 'DbConfig.php';
-  $esteka = mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db);
-  if ($esteka->connect_error) {
-    die("Errorea konektatzerakoan: " . $esteka->connect_error);
-  }
-  $sql_Quiz = "SELECT * FROM dbt51_user WHERE Eposta='$eposta' AND Pasahitza='$pasahitz'";
-
-  $ema = $esteka-> query($sql_Quiz);
-
-  if (!($ema)){
-    echo "Errorea kontsultan<br >". $ema->error;
-  }else{
-    $rows_cnt = $ema->num_rows;
-    mysqli_close($esteka);
-    if ($rows_cnt==1){$rows_cnt=0;
-        echo "<script> alert('Ongi etorri webgunera') </script>";
-        header('location:Layout.php?eposta='.$eposta);
-        //echo "<script> alert('Ongi etorri webgunera') </script>"                  
-    }else{
-        echo "<script> alert('Ez da existitzen erabiltzailerik $eposta honekin datu-basean') </script>";
-    }
-  }
-}
-?>

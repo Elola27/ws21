@@ -5,7 +5,7 @@ function datuakegokiak(){
     eroker1=document.getElementById("oker1").value;
     eroker2=document.getElementById("oker2").value;
     eroker3=document.getElementById("oker3").value;
-    zail=document.querySelector('input[name="zailtasun"]:checked')
+    zail=document.querySelector('input[name="zailtasun"]').value
     //zail=document.getElementById("zailtasun").value;
     arlo=document.getElementById("arlo").value;
     /*errez = document.getElementById("frmrdbtxikia").checked
@@ -65,7 +65,7 @@ function bidaliDatuak(){
     eroker1=document.getElementById("oker1").value;
     eroker2=document.getElementById("oker2").value;
     eroker3=document.getElementById("oker3").value;
-    zail=document.querySelector('input[name="zailtasun"]:checked')
+    zail=document.querySelector('input[name="zailtasun"]').value;
     //zail=document.getElementById("zailtasun").value;
     arlo=document.getElementById("arlo").value;
 
@@ -74,11 +74,10 @@ function bidaliDatuak(){
     xhro = new XMLHttpRequest();
     xhro.onreadystatechange=function(){
         //alert("Galdera gehitzen");
-        if (XMLHttpRequest.status==200){
-            //alert("Eragiketak ongi joan dira");
-            //document.getElementById("ondo").style.visibility="visible";
-            console.log("Datuak ongi sartu dira");
-            document.getElementById("emaitza").append("Ondo joan da");
+        if (xhro.status==200){
+            //document.getElementById("emaitza").append("Ondo joan da");
+            document.getElementById("emaitza").innerHTML="Ondo gehitu da galdera";
+            //alert("Galdera ongi gorde da");
         } /*else{
             document.getElementById("emaitza").innerHTML="Gaizki";
         }*/
