@@ -8,10 +8,10 @@
   <script src='../js/ShowImageInForm.js'></script>-->
   <script type="text/javascript" src='../js/ShowQuestionAjax.js'></script>
   <script type="text/javascript" src='../js/AddQuestionAjax.js'></script>
-  <script type="text/javascript" src='../js/JsonQuestionsCouinter.js'></script>
+  <script type="text/javascript" src='../js/JsonQuestionsCounter.js'></script>
   <script type="text/javascript" src ='../js/ShowImageInForm.js'></script>
   </head>
-<body>
+<body onload="galderak()">
 <?php include "Menus.php" ?>
   <section class="main" id="s1"style="display:flex">
     <div id="form" style="float:left">      
