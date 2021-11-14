@@ -15,7 +15,7 @@
     <div>      
     <h5>Irudia duen galdera baten datuak erabiltzaileak sar ditzan <br/>
 	  Irudia eta galdera erlazionatuta egon behar dute<br/></h5>
-    <form id="galderenF" name="galderenF" action="AddQuestionWithImage.php<?php if (isset($_GET['eposta'])){echo '?eposta='.$_GET['eposta']."&irudia=".$_GET['irudia'];}?>"
+    <form id="galderenF" name="galderenF" action="AddQuestionWithImage.php<?php if (isset($_GET['eposta'])){echo '?eposta='.$_GET['eposta']."&irudia=".$_GET['irudia']."&rola=".$_GET['rola'];}?>"
      method="post" onreset="hide_image()" enctype="multipart/form-data">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
         <input type="text" id="eposta" name="eposta" value=<?php echo $_GET['eposta']?>><br>

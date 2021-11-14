@@ -63,6 +63,7 @@
                 if (isset($_GET['eposta'])) {
                     $parametroak = "?eposta=".$_GET['eposta'];
                     $parametroak = $parametroak."&irudia=".$_GET['irudia'];
+                    $parametroak = $parametroak."&rola=".$_GET['rola'];
                 }
                 return "<p>Galdera ondo gorde da DB-n, XML-n eta JSON-en</p> 
                         <p><a href='ShowQuestions.php".$parametroak."'>Galdera guztiak ikusi</a></p>

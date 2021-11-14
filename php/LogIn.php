@@ -32,13 +32,13 @@
                     die("DB-ra konexio bat egitean errore bat egon da: " . $nireSQLI->connect_error);
                 }
 
-                $ema = $nireSQLI->query("SELECT Eposta, Pasahitza, Direktorioa FROM dbt51_user WHERE Eposta = '".$_POST["eposta"]."'");
+                $ema = $nireSQLI->query("SELECT Eposta, Pasahitza, Direktorioa,Mota FROM dbt51_user WHERE Eposta = '".$_POST["eposta"]."'");
                 if (($tabladatuak = $ema->fetch_row()) != null) {
                     if ($datuak["eposta"] == $tabladatuak[0] && $datuak["pasahitza"]==$tabladatuak[1]) {
                         /*echo '<script> alert("Logeatu egin zara, '.$tabladatuak["eposta"].'") </script>';
                         header("location: Layout.php?eposta=".$tabladatuak[0]."&irudia=".$tabladatuak[2]);*/
                         echo"<script> alert('Ongi etorri webgunera ".$tabladatuak[0]."') </script>";
-                        echo "<script type='text/javascript'> window.location='Layout.php?eposta=".$tabladatuak[0]."&irudia=".$tabladatuak[2]."'</script>";
+                        echo "<script type='text/javascript'> window.location='Layout.php?eposta=".$tabladatuak[0]."&irudia=".$tabladatuak[2]."&rola=".$tabladatuak[3]."'</script>";
                     } else {
                         echo '<p style="color: red"> Zure erabiltzailea edo pasahitza ez dira zuzenak. </p>';
                     }

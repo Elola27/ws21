@@ -4,7 +4,37 @@
 <?php include '../html/Head.html'?> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script src="../js/ShowImageInForm.js"></script>
-  <script language="JavaScript">
+  <script  language="JavaScript">
+         function egiaztatuMatrikula(){
+          eposta=document.getElementById("eposta").value;
+          xhro = new XMLHttpRequest();
+          xhro.onreadystatechange=function(){
+        //alert("Galdera gehitzen");
+          if (xhro.status==200){
+            //document.getElementById("emaitza").append("Ondo joan da");
+            if (xhro.responseText === "BAI"){
+              document.getElementById("submit").disabled=false;
+              document.getElementById("egiaztapen").innerHTML=" Matrikulatuta dago eposta hau";
+              document.getElementById("egiaztapen").style="color:green";
+            }else{
+              document.getElementById("submit").disabled=true;
+              document.getElementById("egiaztapen").innerHTML=" Matrikulatu gabe dago eposta hau";
+              document.getElementById("egiaztapen").style="color:red";
+            }
+            
+            //alert("Galdera ongi gorde da");
+          }/*else{
+            document.getElementById("emaitza").innerHTML="Gaizki";
+          }*/
+          }
+       
+        //Datuak bidali
+          xhro.open("GET","ClientVerifyEnrollment.php?eposta="+eposta,true);
+          xhro.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          //xhro.send(balioa);
+          xhro.send();
+
+        }
           $(document).ready(function(){
                     $.betetadagoen = function()
                     {   
@@ -70,7 +100,7 @@
         <input type="radio" id="ikasle" name="mota" value="Ikaslea">
         <label for="ikasle">Ikaslea</label> </br>
         <label for="eposta"> Eposta (*): </label>
-        <input type="text" id="eposta" name="eposta"><br>
+        <input type="text" id="eposta" name="eposta" onchange="egiaztatuMatrikula()"> <span id="egiaztapen"></span></br>
         <label for="deitura"> Deitura [izen-abizenak] (*): </label>
         <input type="text" id="deitura" name="deitura"><br>
         <label for="pasahitz"> Pasahitza (*): </label>
@@ -81,7 +111,7 @@
         <input type="file" accept="image/*" name="irudia" id="irudia" onchange="show_image(this, 'reset')"><br>      
 
         <input type="reset" value="Hustu" id="reset">
-        <input type="submit" value="Igorri galdera" id="submit" >
+        <input type="submit" value="Igorri galdera" id="submit" disabled>
       </form>
     </div>
   </section>
