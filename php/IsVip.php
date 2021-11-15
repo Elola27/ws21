@@ -18,7 +18,6 @@
   if (isset($_POST['konprobatu'])){
     $ch=curl_init();
     $url="https://sw.ikasten.io/~T51/REST/vipusers/".$_POST['konprobatu'];
-    echo "<script> alert('$url') </script>";
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
     $str=curl_exec($ch);

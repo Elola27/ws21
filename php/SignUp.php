@@ -47,7 +47,7 @@
                             return false;
                         }
                     }
-                    $.epostakonprobatu = function()
+                    /*$.epostakonprobatu = function()
                     {
                         var balioa= $("#eposta").val();
                         if (balioa.match((/^[a-zA-Z]+[0-9]{3}@ikasle\.ehu\.(eus|es)$/)) || balioa.match((/^[a-zA-Z]\.[a-zA-Z]+@ehu\.(eus|es)$/)))
@@ -58,7 +58,7 @@
                         {
                             return false;
                         }
-                    }
+                    }*/
                     $.deiturak = function(){
                       var deitura=$("#deitura").val();
                       if (deitura.match(/^([A-Z]([a-z]+)(\s[A-Z]([a-z]+)\s?)+)+$/)){
@@ -70,17 +70,17 @@
 
                     $('#submit').click(function(){
                         if ($.betetadagoen()){
-                            if ($.epostakonprobatu()){ 
+                            //if ($.epostakonprobatu()){ 
                               if ($.deiturak()){
                                 return true;  
                               } else{
                                 alert("Deituren formatua ez da egokia");
                                 return false;
                               }     
-                            }else {
+                            /*}else {
                                 alert("Erabilitako e-posta elektronikoa okerra da");
                                 return false;
-                            }
+                            }*/
                         }else {
                             alert("Hutsuneak daude, bete itzazu!");
                             return false;

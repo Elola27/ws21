@@ -19,7 +19,6 @@
     if (isset($_POST['id'])){
       $ch=curl_init();
       $url="https://sw.ikasten.io/~T51/REST/vipusers/";
-      echo "<script> alert('$url') </script>";
       curl_setopt($ch,CURLOPT_URL,$url);
       curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
       curl_setopt($ch,CURLOPT_POST,true);
