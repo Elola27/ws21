@@ -1,3 +1,12 @@
+<?php session_start(); 
+    if (!isset($_SESSION['rola'])){
+        echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+    }else{
+        if ($_SESSION['rola']!="Irakaslea"){
+            echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+        }
+    }     
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,17 +26,21 @@
     </form>
     <?php
     if (isset($_POST['id'])){
-      $ch=curl_init();
-      $url="https://sw.ikasten.io/~T51/REST/vipusers/";
-      curl_setopt($ch,CURLOPT_URL,$url);
-      curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-      curl_setopt($ch,CURLOPT_POST,true);
-      $data=array('id'=> $_POST['id']);
-      curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-      $str=curl_exec($ch);
-      //echo "<script> alert('.$str.') </script>";
-      echo $str;
-      curl_close($ch);
+      if ($_POST['id']!=""){
+        $ch=curl_init();
+        $url="https://sw.ikasten.io/~T51/REST/vipusers/";
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_POST,true);
+        $data=array('id'=> $_POST['id']);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        $str=curl_exec($ch);
+        echo $str;
+        curl_close($ch);
+      }else{
+        echo "Epostaren balioa hutsik dago, beraz ez ezin da ikaslerik VIP bezala ezarri";
+      }
+      
     }
     ?>
   </section>

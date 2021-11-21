@@ -7,12 +7,12 @@
         $parametroak = $parametroak."&irudia=".$_GET['irudia'];
     }
 
-    if (isset($_GET['eposta'])) {
-        echo '<span class="right"><a href="LogOut.php'.$parametroak.'">Logout</a></span> &nbsp;';
-        echo $_GET['eposta'].'&nbsp;';
+    if (isset($_SESSION['eposta'])) {
+        echo '<span class="right"><a href="LogOut.php">Logout</a></span> &nbsp;';
+        echo $_SESSION['eposta'].'&nbsp;';
 
-        if (isset($_GET['irudia']) && file_exists($_GET['irudia'])) {
-            $irudia = file_get_contents($_GET['irudia']);
+        if (isset($_SESSION['irudia']) && file_exists($_SESSION['irudia'])) {
+            $irudia = file_get_contents($_SESSION['irudia']);
             echo '<img src="data:image/*;base64,' . base64_encode($irudia) . '" height=50 width=50"/>';
         } else {
             echo '<img src="../images/default_erabiltzailea.png" height=50 width=50"/>';
@@ -35,7 +35,7 @@
     }
 
     echo '<span><a href="Layout.php'.$parametroak.'">Hasiera</a></span>';
-    if (isset($_GET['eposta'])) {
+    /*if (isset($_GET['eposta'])) {
         echo '<span><a href="QuestionFormWithImage.php'.$parametroak.'">Galderak gehitu</a></span>';
         echo '<span><a href="ShowQuestions.php'.$parametroak.'">Galderak</a></span>';
         echo '<span><a href="ShowQuestionsWithImage.php'.$parametroak.'">Galderak irudiekin</a></span>';
@@ -48,8 +48,23 @@
             //echo '<span><a href="HandlingQuizesAjax.php'.$parametroak.'">Ezabatu VIP</a></span>';
             echo '<span><a href="ShowVips.php'.$parametroak.'">Zerrendatu VIP</a></span>';
         }
+    }*/
+    if (isset($_SESSION['rola'])){
+    if ($_SESSION['rola']=='Ikaslea'){
+        echo '<span><a href="HandlingQuizesAjax.php">AJAX galderak kudeatu</a></span>';
+    }else{
+    if ($_SESSION['rola']=='Irakaslea'){
+        echo '<span><a href="IsVip.php">VIP da?</a></span>';
+        echo '<span><a href="AddVip.php">Gehitu VIP</a></span>';
+        echo '<span><a href="ShowVips.php">Zerrendatu VIP</a></span>';
+        echo '<span><a href="DeleteVip.php">Ezabatu VIP</a></span>';
+        echo '<span><a href="HandlingQuizesAjax.php">AJAX galderak kudeatu</a></span>';
+    }else if ($_SESSION['rola']=='Admin'){
+        echo '<span><a href="HandlingAccounts.php">Kontuak maneiatu</a></span>';
+        }
+    }   
     }
-    echo '<span><a href="Credits.php'.$parametroak.'">Kredituak</a></span>';
+    echo '<span><a href="Credits.php">Kredituak</a></span>';
     ?>
 </nav>
 

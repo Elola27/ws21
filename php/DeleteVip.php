@@ -17,7 +17,7 @@
   
   <section class="main" id="s1">
     <div>
-    <h3> Erabiltzaile bat VIP den identifikatzeko REST bezeroa</h3>
+    <h3> Erabiltzaile bat VIP zerrendatik REST bezeroa</h3>
     <form id="begiratuVIP" name="begiratuVIP" action="" method="post" enctype="multipart/form-data">
         <label for="konprobatu"> Sartu eposta: </label>
         <input type="text" id="konprobatu" name="konprobatu">
@@ -27,14 +27,16 @@
   if (isset($_POST['konprobatu'])){
     if($_POST['konprobatu']!=""){
       $ch=curl_init();
-      $url="https://sw.ikasten.io/~T51/REST/vipusers/".$_POST['konprobatu'];
-      curl_setopt($ch,CURLOPT_URL,$url);
+      $url="http://localhost/REST/vipusers/".$_POST['konprobatu'];
       curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'BORRAR');
       $str=curl_exec($ch);
-    //echo "<script> alert('.$str.') </script>";
+      echo "<script> alert('".$_POST['konprobatu']."') </script>";
+      echo "<script> alert('".$str."') </script>";
       echo $str;
+      curl_close($ch);
     }else{
-      echo "Epostaren balioa hutsa eman da, beraz ezin da bilatu ikasle VIP-ik";
+      echo "Epostaren balioa hutsa eman da, beraz ezin da ezabatu VIP-ik";
     }
    
   }
@@ -44,6 +46,3 @@
   <?php include '../html/Footer.html' ?>
 </body>
 </html>
-
-
-    

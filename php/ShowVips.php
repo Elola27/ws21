@@ -1,3 +1,12 @@
+<?php session_start(); 
+    if (!isset($_SESSION['rola'])){
+        echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+    }else{
+        if ($_SESSION['rola']!="Irakaslea"){
+            echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+        }
+    }     
+?>
 <!DOCTYPE html>
 <html>
 <head>

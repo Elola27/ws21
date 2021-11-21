@@ -1,3 +1,9 @@
+<?php session_start(); 
+  if (isset($_SESSION['rola'])){
+    echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+  }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +153,8 @@ if (isset($_POST['eposta'])){
       echo"<script> alert('Konexioa ez da ireki') </script>";
       //echo ("die('Huts egin du konexioak MySQL-ra: ('.$niresqli->connect_errno . ')'. $niresqli->connect_error);");
     }
-    if(!$niresqli->query("INSERT INTO dbt51_user(Eposta,Deiturak,Pasahitza,Mota,Irudia,Direktorioa) VALUES ('$_POST[eposta]','$_POST[deitura]','$_POST[pasahitz]','$_POST[mota]','$irudia', '$dir')")){
+    $pasahitza=crypt($pasahitz);
+    if(!$niresqli->query("INSERT INTO dbt51_user(Eposta,Deiturak,Pasahitza,Mota,Irudia,Direktorioa) VALUES ('$_POST[eposta]','$_POST[deitura]','$pasahitza','$_POST[mota]','$irudia', '$dir')")){
       //echo"<script> alert('Dagoeneko erabiltzaile bat sortuta dago emandako datuekin (eposta berdinekoa)')</script>";  
       $mezua = str_replace("'", "\'", $niresqli->error);
       echo "<script>alert('Errorea datu-basean: $mezua')</script>";

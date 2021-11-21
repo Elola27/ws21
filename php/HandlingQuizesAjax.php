@@ -1,3 +1,12 @@
+<?php session_start(); 
+    if (!isset($_SESSION['rola'])){
+        echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+    }else{
+        if ($_SESSION['rola']=="Admin"){
+            echo "<script type='text/javascript'> window.location='Layout.php' </script>";
+        }
+    }     
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +26,9 @@
     <div id="form" style="float:left">      
     <p id="galderak" ></p>
     <h5>Galdera sortzeko formularioa<br/></h5>
-    <form id="galderenF" name="galderenF" onreset="hide_image()" style="box-sizing:border-box">
+    <form id="galderenF" name="galderenF" onreset="hide_image()" style="box-sizing:border-box" onsubmit="galderak()">
         <label for="eposta"> Galdera egilearen e-posta (*): </label>
-        <input type="text" id="eposta" name="eposta" value=<?php echo $_GET['eposta']?>><br>
+        <input type="text" id="eposta" name="eposta" value=<?php echo $_SESSION['eposta']?>><br>
         <label for="galdera"> Galdera testua (*): </label>
         <input type="text" id="galdera" name="galdera"><br>
         <label for="zuzen"> Erantzun zuzena (*): </label>
