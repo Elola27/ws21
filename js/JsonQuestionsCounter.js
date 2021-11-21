@@ -15,19 +15,22 @@ function galderak() {
             //('#galderak').empty(); 
             guregalderak=0;
             galderatotalak=0;
+            epos=document.getElementById('eposta').value;
             //eposta=$_GET['eposta'];
             //var $_GET= "<?php echo json_encode($_GET); ?>";
             //eposta=$_GET['eposta'];
-            eposta=$(location). attr("href");
-            balioa=eposta.split("=");
-            epos=balioa[1].split("&");
+            /*eposta=$(location). attr("href");
+            balioa=eposta.split('=');
+            epos=balioa[1].split('&');*/
+            //<?php session_start(); echo $_SESSION['eposta']; ?>;
+            "${session.eposta}";
             $.each(data.assessmentItems,function(key,value){
                 galderatotalak+=1;
-                if (value.author===epos[0]){
+                if (value.author===epos){
                     guregalderak+=1;
                 }
             });
-            testua=epos[0] + " erabiltzaileak sortutako galderak " + guregalderak + "/" + galderatotalak;
+            testua=epos + " erabiltzaileak sortutako galderak " + guregalderak + "/" + galderatotalak;
             $('#galderak').append(testua);
             //$('#galderak').append(eposta);
             //$('#galderak').append(balioa[1]);
