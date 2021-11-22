@@ -27,12 +27,11 @@
   if (isset($_POST['konprobatu'])){
     if($_POST['konprobatu']!=""){
       $ch=curl_init();
-      $url="http://localhost/REST/vipusers/".$_POST['konprobatu'];
+      $url="https://sw.ikasten.io/~T51/REST/vipusers/".$_POST['konprobatu'];
+      curl_setopt($ch, CURLOPT_URL ,$url);
       curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'BORRAR');
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
       $str=curl_exec($ch);
-      echo "<script> alert('".$_POST['konprobatu']."') </script>";
-      echo "<script> alert('".$str."') </script>";
       echo $str;
       curl_close($ch);
     }else{
